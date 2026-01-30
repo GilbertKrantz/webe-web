@@ -34,25 +34,25 @@ export default function About() {
         { y: 0, opacity: 1, ease: 'none' },
         0
       );
-      
+
       scrollTl.fromTo(lineRef.current,
         { scaleX: 0 },
         { scaleX: 1, ease: 'none', transformOrigin: 'left' },
         0.10
       );
-      
+
       scrollTl.fromTo(microcopyRef.current,
         { y: '10vh', opacity: 0 },
         { y: 0, opacity: 1, ease: 'none' },
         0.15
       );
-      
+
       scrollTl.fromTo(labelRef.current,
         { opacity: 0 },
         { opacity: 1, ease: 'none' },
         0.10
       );
-      
+
       scrollTl.fromTo(decorRef.current,
         { opacity: 0, scale: 0.8 },
         { opacity: 1, scale: 1, ease: 'none' },
@@ -65,19 +65,19 @@ export default function About() {
         { y: '-15vh', opacity: 0.25, ease: 'power2.in' },
         0.70
       );
-      
+
       scrollTl.fromTo(microcopyRef.current,
         { opacity: 1 },
         { opacity: 0.2, ease: 'power2.in' },
         0.75
       );
-      
+
       scrollTl.fromTo(labelRef.current,
         { opacity: 1 },
         { opacity: 0.2, ease: 'power2.in' },
         0.75
       );
-      
+
       scrollTl.fromTo(decorRef.current,
         { opacity: 1 },
         { opacity: 0.1, ease: 'power2.in' },
@@ -90,20 +90,20 @@ export default function About() {
   }, []);
 
   return (
-    <section 
-      ref={sectionRef} 
+    <section
+      ref={sectionRef}
       className="section-pinned bg-[#0B0B0D] z-20 flex items-center justify-center"
     >
       {/* Top-right label */}
-      <div 
+      <div
         ref={labelRef}
         className="absolute right-6 md:right-[7vw] top-[10vh] font-mono text-xs uppercase tracking-[0.14em] text-[#A7A7AA] opacity-0"
       >
         ABOUT
       </div>
-      
+
       {/* Decorative Element */}
-      <div 
+      <div
         ref={decorRef}
         className="absolute left-6 md:left-[7vw] top-[15vh] opacity-0"
       >
@@ -112,26 +112,26 @@ export default function About() {
           <div className="absolute -bottom-2 -right-2 w-4 h-4 border-b border-r border-lime"></div>
         </div>
       </div>
-      
+
       {/* Main Statement - Centered */}
-      <div 
+      <div
         ref={statementRef}
         className="relative w-full px-6 md:px-[15vw] opacity-0"
       >
         <h2 className="text-[clamp(28px,8vw,64px)] md:text-[clamp(40px,5vw,72px)] font-bold text-[#F4F4F5] leading-[1] mb-6 md:mb-8 text-center">
-          I turn complex data<br className="hidden md:block" /> into products.
+          I build robust data<br className="hidden md:block" /> and AI systems.
         </h2>
-        <div 
+        <div
           ref={lineRef}
           className="w-[40vw] md:w-[20vw] h-px line-primary mx-auto mb-6 md:mb-8 origin-left"
           style={{ transform: 'scaleX(0)' }}
         ></div>
         <p className="text-[#A7A7AA] text-base md:text-lg leading-relaxed mb-6 md:mb-8 max-w-[90vw] md:max-w-[50vw] mx-auto text-center">
-          I design machine learning systems, end-to-end pipelines, and interfaces 
-          that make data useful—fast, observable, and human-readable.
+          I design scalable data engineering pipelines, distributed AI systems,
+          and production-ready architectures that make data reliable and intelligent.
         </p>
         <div className="flex justify-center">
-          <a 
+          <a
             href="#experience"
             className="group inline-flex items-center gap-3 text-lime font-mono text-sm uppercase tracking-[0.14em] hover:text-white transition-colors"
           >
@@ -141,9 +141,9 @@ export default function About() {
           </a>
         </div>
       </div>
-      
+
       {/* Bottom microcopy */}
-      <div 
+      <div
         ref={microcopyRef}
         className="absolute left-6 md:left-[7vw] bottom-[8vh] opacity-0"
       >
@@ -151,7 +151,7 @@ export default function About() {
           Binus University — GPA 3.87/4.00
         </p>
       </div>
-      
+
       {/* Corner Decoration */}
       <div className="absolute bottom-8 right-8 w-4 h-4 border-b border-r border-white/20"></div>
     </section>

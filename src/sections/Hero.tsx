@@ -21,14 +21,14 @@ export default function Hero() {
     const ctx = gsap.context(() => {
       // Auto-play entrance animation on load
       const loadTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-      
+
       // Lines draw
-      loadTl.fromTo([line1Ref.current, line2Ref.current], 
-        { scaleX: 0 }, 
+      loadTl.fromTo([line1Ref.current, line2Ref.current],
+        { scaleX: 0 },
         { scaleX: 1, duration: 0.9, stagger: 0.1, transformOrigin: 'left' },
         0
       );
-      
+
       // Headline words stagger
       const words = headlineRef.current?.querySelectorAll('.word');
       if (words) {
@@ -38,21 +38,21 @@ export default function Hero() {
           0.2
         );
       }
-      
+
       // Subheadline
       loadTl.fromTo(subheadRef.current,
         { y: 20, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.7 },
         0.5
       );
-      
+
       // CTA
       loadTl.fromTo(ctaRef.current,
         { y: 20, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.7 },
         0.6
       );
-      
+
       // Location
       loadTl.fromTo(locationRef.current,
         { y: 10, opacity: 0 },
@@ -83,25 +83,25 @@ export default function Hero() {
         { x: '-10vw', opacity: 0.25, ease: 'power2.in' },
         0.70
       );
-      
+
       scrollTl.fromTo(subheadRef.current,
         { x: 0, opacity: 1 },
         { x: '-10vw', opacity: 0.25, ease: 'power2.in' },
         0.72
       );
-      
+
       scrollTl.fromTo(ctaRef.current,
         { x: 0, opacity: 1 },
         { x: '-10vw', opacity: 0.25, ease: 'power2.in' },
         0.74
       );
-      
+
       scrollTl.fromTo([line1Ref.current, line2Ref.current],
         { opacity: 1 },
         { opacity: 0.2, ease: 'power2.in' },
         0.70
       );
-      
+
       scrollTl.fromTo(locationRef.current,
         { opacity: 1 },
         { opacity: 0.2, ease: 'power2.in' },
@@ -114,22 +114,22 @@ export default function Hero() {
   }, []);
 
   return (
-    <section 
-      ref={sectionRef} 
+    <section
+      ref={sectionRef}
       className="section-pinned bg-[#0B0B0D] z-10 flex items-center justify-center"
     >
       {/* Decorative Lines */}
-      <div 
+      <div
         ref={line1Ref}
         className="absolute top-[15vh] left-[7vw] w-[30vw] h-px line-primary origin-left"
         style={{ transform: 'scaleX(0)' }}
       />
-      <div 
+      <div
         ref={line2Ref}
         className="absolute bottom-[20vh] right-[7vw] w-[25vw] h-px line-secondary origin-left"
         style={{ transform: 'scaleX(0)' }}
       />
-      
+
       {/* Main Content - Centered */}
       <div className="relative w-full px-6 md:px-[7vw] flex flex-col items-start md:items-center">
         {/* Headline */}
@@ -139,28 +139,28 @@ export default function Hero() {
             <span className="word block text-lime">CHANDRA</span>
           </h1>
         </div>
-        
+
         {/* Subheadline */}
         <div ref={subheadRef} className="mb-8 md:mb-10 opacity-0">
           <div className="flex items-center gap-4 mb-4">
             <div className="w-8 md:w-12 h-px line-primary"></div>
             <p className="text-[clamp(12px,3vw,16px)] md:text-[clamp(14px,1.5vw,18px)] text-[#A7A7AA] font-mono uppercase tracking-[0.2em]">
-              Data Scientist & AI Engineer
+              Data Engineer & AI Engineer
             </p>
             <div className="w-8 md:w-12 h-px line-primary"></div>
           </div>
         </div>
-        
+
         {/* CTA Row */}
         <div ref={ctaRef} className="flex flex-col sm:flex-row items-start sm:items-center gap-4 md:gap-6 opacity-0">
-          <a 
+          <a
             href="#projects"
             className="group flex items-center gap-3 px-6 py-3 border border-lime text-lime font-mono text-sm uppercase tracking-[0.14em] hover:bg-lime hover:text-[#0B0B0D] transition-colors"
           >
             View Projects
             <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
           </a>
-          <a 
+          <a
             href="#"
             className="flex items-center gap-2 text-[#A7A7AA] font-mono text-sm uppercase tracking-[0.14em] hover:text-lime transition-colors"
           >
@@ -168,9 +168,9 @@ export default function Hero() {
             Download CV
           </a>
         </div>
-        
+
         {/* Location */}
-        <div 
+        <div
           ref={locationRef}
           className="absolute bottom-[-20vh] md:bottom-[-25vh] left-6 md:left-auto opacity-0"
         >
@@ -179,7 +179,7 @@ export default function Hero() {
           </p>
         </div>
       </div>
-      
+
       {/* Corner Decorations */}
       <div className="absolute top-8 right-8 w-4 h-4 border-t border-r border-white/20"></div>
       <div className="absolute bottom-8 left-8 w-4 h-4 border-b border-l border-white/20"></div>
