@@ -22,7 +22,7 @@ export const Chatbot: React.FC = () => {
         return (
             <button
                 onClick={() => setIsOpen(true)}
-                className="fixed bottom-6 right-6 w-12 h-12 bg-[#2D2D2D] border border-white/10 rounded-full flex items-center justify-center shadow-2xl z-[90] group hover:border-lime/50 transition-all"
+                className="fixed bottom-6 right-6 md:bottom-6 md:right-6 w-12 h-12 bg-[#2D2D2D] border border-white/10 rounded-full flex items-center justify-center shadow-2xl z-[9999] group hover:border-lime/50 transition-all"
                 title="System Override"
             >
                 <div className="absolute inset-0 bg-lime/5 rounded-full animate-pulse group-hover:bg-lime/10"></div>
@@ -98,7 +98,7 @@ export const Chatbot: React.FC = () => {
                     value={inputVal}
                     onChange={(e) => setInputVal(e.target.value)}
                     placeholder="ENTER QUERY..."
-                    className="flex-1 bg-transparent border-b border-white/10 font-mono text-xs py-1 focus:outline-none focus:border-lime/50 placeholder:text-white/10 text-lime"
+                    className="flex-1 bg-transparent border-b border-white/10 font-mono text-base md:text-xs py-1 focus:outline-none focus:border-lime/50 placeholder:text-white/10 text-lime"
                     autoFocus
                     disabled={status !== 'ready'}
                 />
