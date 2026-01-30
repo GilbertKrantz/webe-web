@@ -113,10 +113,18 @@ export default function Hero() {
     return () => ctx.revert();
   }, []);
 
+  const handleScrollToProjects = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const target = document.querySelector('#projects');
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section
       ref={sectionRef}
-      className="section-pinned bg-[#0B0B0D] z-10 flex items-center justify-center"
+      className="section-pinned bg-background z-10 flex items-center justify-center"
     >
       {/* Decorative Lines */}
       <div
@@ -134,7 +142,7 @@ export default function Hero() {
       <div className="relative w-full px-6 md:px-[7vw] flex flex-col items-start md:items-center">
         {/* Headline */}
         <div ref={headlineRef} className="mb-6 md:mb-8">
-          <h1 className="text-[clamp(48px,15vw,120px)] md:text-[clamp(64px,12vw,140px)] font-bold text-[#F4F4F5] leading-[0.85] tracking-[-0.03em]">
+          <h1 className="text-[clamp(48px,15vw,120px)] md:text-[clamp(64px,12vw,140px)] font-bold text-foreground leading-[0.85] tracking-[-0.03em]">
             <span className="word block">WILBERT</span>
             <span className="word block text-lime">CHANDRA</span>
           </h1>
@@ -144,7 +152,7 @@ export default function Hero() {
         <div ref={subheadRef} className="mb-8 md:mb-10 opacity-0">
           <div className="flex items-center gap-4 mb-4">
             <div className="w-8 md:w-12 h-px line-primary"></div>
-            <p className="text-[clamp(12px,3vw,16px)] md:text-[clamp(14px,1.5vw,18px)] text-[#A7A7AA] font-mono uppercase tracking-[0.2em]">
+            <p className="text-[clamp(12px,3vw,16px)] md:text-[clamp(14px,1.5vw,18px)] text-muted-foreground font-mono uppercase tracking-[0.2em]">
               Data Engineer & AI Engineer
             </p>
             <div className="w-8 md:w-12 h-px line-primary"></div>
@@ -155,14 +163,15 @@ export default function Hero() {
         <div ref={ctaRef} className="flex flex-col sm:flex-row items-start sm:items-center gap-4 md:gap-6 opacity-0">
           <a
             href="#projects"
-            className="group flex items-center gap-3 px-6 py-3 border border-lime text-lime font-mono text-sm uppercase tracking-[0.14em] hover:bg-lime hover:text-[#0B0B0D] transition-colors"
+            onClick={handleScrollToProjects}
+            className="group flex items-center gap-3 px-6 py-3 border border-primary text-primary font-mono text-sm uppercase tracking-[0.14em] hover:bg-primary hover:text-background transition-colors"
           >
             View Projects
             <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
           </a>
           <a
             href="#"
-            className="flex items-center gap-2 text-[#A7A7AA] font-mono text-sm uppercase tracking-[0.14em] hover:text-lime transition-colors"
+            className="flex items-center gap-2 text-muted-foreground font-mono text-sm uppercase tracking-[0.14em] hover:text-lime transition-colors"
           >
             <FileDown className="w-4 h-4" />
             Download CV
@@ -174,7 +183,7 @@ export default function Hero() {
           ref={locationRef}
           className="absolute bottom-[-20vh] md:bottom-[-25vh] left-6 md:left-auto opacity-0"
         >
-          <p className="font-mono text-xs uppercase tracking-[0.14em] text-[#A7A7AA]">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground">
             Jakarta, Indonesia
           </p>
         </div>

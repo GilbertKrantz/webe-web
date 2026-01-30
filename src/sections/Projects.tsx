@@ -60,11 +60,11 @@ export default function Projects() {
       // Card animations
       cardRefs.current.forEach((card) => {
         if (!card) return;
-        
+
         const content = card.querySelector('.card-content');
         const number = card.querySelector('.card-number');
         const line = card.querySelector('.card-line');
-        
+
         gsap.fromTo(number,
           { x: '-5vw', opacity: 0 },
           {
@@ -78,7 +78,7 @@ export default function Projects() {
             }
           }
         );
-        
+
         gsap.fromTo(content,
           { x: '5vw', opacity: 0 },
           {
@@ -92,7 +92,7 @@ export default function Projects() {
             }
           }
         );
-        
+
         gsap.fromTo(line,
           { scaleX: 0 },
           {
@@ -114,74 +114,74 @@ export default function Projects() {
   }, []);
 
   return (
-    <section 
-      ref={sectionRef} 
+    <section
+      ref={sectionRef}
       id="projects"
-      className="relative bg-[#0B0B0D] z-30 py-[8vh] px-4 md:px-[7vw]"
+      className="relative bg-background z-30 py-[8vh] px-4 md:px-[7vw]"
     >
       {/* Header */}
       <div ref={headerRef} className="flex flex-col md:flex-row md:items-end justify-between mb-[6vh] pb-6 border-b border-white/10 gap-4">
-        <h2 className="text-[clamp(32px,10vw,56px)] md:text-[clamp(40px,5vw,56px)] font-bold text-[#F4F4F5]">
+        <h2 className="text-[clamp(32px,10vw,56px)] md:text-[clamp(40px,5vw,56px)] font-bold text-foreground">
           PROJECTS
         </h2>
-        <span className="font-mono text-xs uppercase tracking-[0.14em] text-[#A7A7AA]">
+        <span className="font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground">
           Selected Work
         </span>
       </div>
-      
+
       {/* Project Cards */}
       <div className="space-y-0">
         {projects.map((project, index) => (
-          <div 
+          <div
             key={project.id}
             ref={el => { cardRefs.current[index] = el; }}
             className="relative border-b border-white/10 py-8 md:py-12"
           >
             {/* Horizontal line */}
-            <div 
+            <div
               className="card-line absolute top-0 left-0 w-full h-px line-secondary origin-left"
               style={{ transform: 'scaleX(0)' }}
             ></div>
-            
+
             <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-8">
               {/* Number */}
               <div className="card-number flex-shrink-0">
-                <span className="text-[clamp(48px,12vw,80px)] md:text-[clamp(64px,8vw,100px)] font-bold text-lime/20 leading-none">
+                <span className="text-[clamp(48px,12vw,80px)] md:text-[clamp(64px,8vw,100px)] font-bold text-primary/10 leading-none">
                   0{project.id}
                 </span>
               </div>
-              
+
               {/* Content */}
               <div className="card-content flex-1">
                 <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 md:gap-4 mb-4">
                   <div>
-                    <h3 className="text-[clamp(24px,6vw,40px)] md:text-[clamp(28px,3vw,44px)] font-bold text-[#F4F4F5] mb-1">
+                    <h3 className="text-[clamp(24px,6vw,40px)] md:text-[clamp(28px,3vw,44px)] font-bold text-foreground mb-1">
                       {project.title}
                     </h3>
-                    <p className="text-[#A7A7AA] text-base md:text-lg">
+                    <p className="text-muted-foreground text-base md:text-lg">
                       {project.subtitle}
                     </p>
                   </div>
-                  <span className="font-mono text-xs uppercase tracking-[0.14em] text-lime">
+                  <span className="font-mono text-xs uppercase tracking-[0.14em] text-primary">
                     {project.meta}
                   </span>
                 </div>
-                
-                <p className="text-[#A7A7AA] text-sm md:text-base leading-relaxed mb-4 md:mb-6 max-w-[90vw] md:max-w-[70%]">
+
+                <p className="text-muted-foreground text-sm md:text-base leading-relaxed mb-4 md:mb-6 max-w-[90vw] md:max-w-[70%]">
                   {project.description}
                 </p>
-                
+
                 {/* Case Study Link - non-clickable if no link */}
                 {project.hasLink ? (
-                  <a 
+                  <a
                     href="#"
-                    className="group inline-flex items-center gap-2 text-[#F4F4F5] font-mono text-sm uppercase tracking-[0.14em] hover:text-lime transition-colors"
+                    className="group inline-flex items-center gap-2 text-foreground font-mono text-sm uppercase tracking-[0.14em] hover:text-primary transition-colors"
                   >
                     View case study
                     <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </a>
                 ) : (
-                  <span className="inline-flex items-center gap-2 text-[#A7A7AA]/40 font-mono text-sm uppercase tracking-[0.14em] cursor-default">
+                  <span className="inline-flex items-center gap-2 text-muted-foreground/40 font-mono text-sm uppercase tracking-[0.14em] cursor-default">
                     View case study
                     <ArrowUpRight className="w-4 h-4" />
                   </span>

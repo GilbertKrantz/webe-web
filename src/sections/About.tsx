@@ -92,12 +92,12 @@ export default function About() {
   return (
     <section
       ref={sectionRef}
-      className="section-pinned bg-[#0B0B0D] z-20 flex items-center justify-center"
+      className="section-pinned bg-background z-20 flex items-center justify-center"
     >
       {/* Top-right label */}
       <div
         ref={labelRef}
-        className="absolute right-6 md:right-[7vw] top-[10vh] font-mono text-xs uppercase tracking-[0.14em] text-[#A7A7AA] opacity-0"
+        className="absolute right-6 md:right-[7vw] top-[10vh] font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground opacity-0"
       >
         ABOUT
       </div>
@@ -118,7 +118,7 @@ export default function About() {
         ref={statementRef}
         className="relative w-full px-6 md:px-[15vw] opacity-0"
       >
-        <h2 className="text-[clamp(28px,8vw,64px)] md:text-[clamp(40px,5vw,72px)] font-bold text-[#F4F4F5] leading-[1] mb-6 md:mb-8 text-center">
+        <h2 className="text-[clamp(28px,8vw,64px)] md:text-[clamp(40px,5vw,72px)] font-bold text-foreground leading-[1] mb-6 md:mb-8 text-center">
           I build robust data<br className="hidden md:block" /> and AI systems.
         </h2>
         <div
@@ -126,7 +126,7 @@ export default function About() {
           className="w-[40vw] md:w-[20vw] h-px line-primary mx-auto mb-6 md:mb-8 origin-left"
           style={{ transform: 'scaleX(0)' }}
         ></div>
-        <p className="text-[#A7A7AA] text-base md:text-lg leading-relaxed mb-6 md:mb-8 max-w-[90vw] md:max-w-[50vw] mx-auto text-center">
+        <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-6 md:mb-8 max-w-[90vw] md:max-w-[50vw] mx-auto text-center">
           I design scalable data engineering pipelines, distributed AI systems,
           and production-ready architectures that make data reliable and intelligent.
         </p>
@@ -147,7 +147,7 @@ export default function About() {
         ref={microcopyRef}
         className="absolute left-6 md:left-[7vw] bottom-[8vh] opacity-0"
       >
-        <p className="font-mono text-xs uppercase tracking-[0.14em] text-[#A7A7AA]">
+        <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground">
           Binus University — GPA 3.87/4.00
         </p>
       </div>

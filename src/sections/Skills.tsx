@@ -51,9 +51,9 @@ export default function Skills() {
       // Column animations
       colRefs.current.forEach((col, index) => {
         if (!col) return;
-        
+
         const direction = index % 2 === 0 ? '-6vw' : '6vw';
-        
+
         gsap.fromTo(col,
           { x: direction, opacity: 0 },
           {
@@ -67,7 +67,7 @@ export default function Skills() {
             }
           }
         );
-        
+
         // Skill rows stagger
         const rows = col.querySelectorAll('.skill-row');
         rows.forEach((row, rowIndex) => {
@@ -93,44 +93,44 @@ export default function Skills() {
   }, []);
 
   return (
-    <section 
-      ref={sectionRef} 
+    <section
+      ref={sectionRef}
       id="skills"
-      className="relative bg-[#0B0B0D] z-[60] py-[8vh] px-4 md:px-[7vw]"
+      className="relative bg-background z-[60] py-[8vh] px-4 md:px-[7vw]"
     >
       {/* Header */}
       <div ref={headerRef} className="flex flex-col md:flex-row md:items-end justify-between mb-[6vh] pb-6 border-b border-white/10 gap-4">
-        <h2 className="text-[clamp(32px,10vw,56px)] md:text-[clamp(40px,5vw,56px)] font-bold text-[#F4F4F5]">
+        <h2 className="text-[clamp(32px,10vw,56px)] md:text-[clamp(40px,5vw,56px)] font-bold text-foreground">
           SKILLS
         </h2>
-        <span className="font-mono text-xs uppercase tracking-[0.14em] text-[#A7A7AA]">
+        <span className="font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground">
           Tools & Tech
         </span>
       </div>
-      
+
       {/* Skills Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 md:gap-x-8 gap-y-8 md:gap-y-12">
         {skillCategories.map((category, catIndex) => (
-          <div 
+          <div
             key={catIndex}
             ref={el => { colRefs.current[catIndex] = el; }}
             className="opacity-0"
           >
             {/* Category Title */}
-            <h3 className="text-sm md:text-base font-bold text-[#F4F4F5] mb-4 md:mb-6 flex items-center gap-2 md:gap-3">
+            <h3 className="text-sm md:text-base font-bold text-foreground mb-4 md:mb-6 flex items-center gap-2 md:gap-3">
               <span className="lime-square"></span>
               {category.title}
             </h3>
-            
+
             {/* Skills List */}
             <div className="space-y-2 md:space-y-3">
               {category.skills.map((skill, skillIndex) => (
-                <div 
+                <div
                   key={skillIndex}
                   className="skill-row flex items-center gap-2 md:gap-4 opacity-0"
                 >
                   <div className="w-4 md:w-8 h-px line-secondary"></div>
-                  <span className="text-[#A7A7AA] font-mono text-xs md:text-sm uppercase tracking-wider">
+                  <span className="text-muted-foreground font-mono text-xs md:text-sm uppercase tracking-wider">
                     {skill}
                   </span>
                 </div>
@@ -139,7 +139,7 @@ export default function Skills() {
           </div>
         ))}
       </div>
-      
+
       {/* Decorative Lines */}
       <div className="mt-12 md:mt-16 flex items-center gap-4">
         <div className="flex-1 h-px line-secondary"></div>

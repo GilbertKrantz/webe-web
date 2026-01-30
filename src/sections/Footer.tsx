@@ -37,49 +37,49 @@ export default function Footer() {
   };
 
   return (
-    <footer 
-      ref={sectionRef} 
-      className="relative bg-[#0B0B0D] z-[90] py-6 md:py-8 px-4 md:px-[7vw] border-t border-white/10"
+    <footer
+      ref={sectionRef}
+      className="relative bg-background z-[90] py-6 md:py-8 px-4 md:px-[7vw] border-t border-white/10"
     >
-      <div 
+      <div
         ref={contentRef}
         className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6 opacity-0"
       >
         {/* Left: Copyright */}
-        <p className="font-mono text-xs uppercase tracking-[0.14em] text-[#A7A7AA] text-center md:text-left">
+        <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground text-center md:text-left">
           © 2026 Wilbert Chandra
         </p>
-        
+
         {/* Center: Back to Top */}
         <button
           onClick={scrollToTop}
-          className="group flex items-center gap-2 text-[#A7A7AA] hover:text-lime transition-colors font-mono text-xs uppercase tracking-[0.14em]"
+          className="group flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors font-mono text-xs uppercase tracking-[0.14em]"
         >
           Back to top
           <ArrowUp className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
         </button>
-        
+
         {/* Right: Links */}
         <div className="flex items-center gap-4 md:gap-6">
-          <a 
+          <a
             href="https://linkedin.com/in/wilbert-chandra-630b0121a"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono text-xs uppercase tracking-[0.14em] text-[#A7A7AA] hover:text-lime transition-colors"
+            className="font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground hover:text-primary transition-colors"
           >
             LinkedIn
           </a>
-          <a 
+          <a
             href="https://github.com/GilbertKrantz"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono text-xs uppercase tracking-[0.14em] text-[#A7A7AA] hover:text-lime transition-colors"
+            className="font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground hover:text-primary transition-colors"
           >
             GitHub
           </a>
-          <a 
+          <a
             href="mailto:wilbertchandra.official@gmail.com"
-            className="font-mono text-xs uppercase tracking-[0.14em] text-[#A7A7AA] hover:text-lime transition-colors"
+            className="font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground hover:text-primary transition-colors"
           >
             Email
           </a>
