@@ -13,6 +13,7 @@ import Contact from './sections/Contact';
 import ThankYou from './sections/ThankYou';
 import Footer from './sections/Footer';
 import { SpeedInsights } from "@vercel/speed-insights/react"
+import { Chatbot } from './components/Chatbot';
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -88,6 +89,7 @@ function App() {
         <ThankYou />
         <Footer />
         <SpeedInsights />
+        <Chatbot />
       </main>
     </div>
   );
