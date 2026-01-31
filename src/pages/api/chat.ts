@@ -1,7 +1,16 @@
-import { google } from '@ai-sdk/google';
+import type { APIRoute } from 'astro';
+export const prerender = false;
+
+export const GET: APIRoute = async () => {
+    return new Response(JSON.stringify({ error: 'Method Not Allowed. Use POST.' }), {
+        status: 405,
+        headers: { 'Content-Type': 'application/json' }
+    });
+};
+
+import { createGoogleGenerativeAI } from '@ai-sdk/google';
 import { streamText, convertToModelMessages } from 'ai';
 
-// Wilbert's Background Data (extracted from codebase)
 const WILBERT_CONTEXT = `
 Role: Data Engineer & AI Engineer
 Location: Jakarta, Indonesia
@@ -30,12 +39,25 @@ Skills:
 - Other: Data Modeling, Analysis, Visualization
 `;
 
-export const config = {
-    runtime: 'edge',
-};
+export const POST: APIRoute = async ({ request }) => {
+    console.log('API Request Method:', request.method);
 
-export async function POST(req: Request) {
-    const { messages } = (await req.json()) as { messages: any[] };
+    const google = createGoogleGenerativeAI({
+        apiKey: import.meta.env.GOOGLE_GENERATIVE_AI_API_KEY,
+    });
+
+    let messages;
+    try {
+        const body = await request.json();
+        messages = body.messages;
+    } catch (e) {
+        console.error('Failed to parse JSON body:', e);
+        return new Response(JSON.stringify({ error: 'Invalid JSON body' }), { status: 400 });
+    }
+
+    if (!messages) {
+        return new Response(JSON.stringify({ error: 'No messages provided' }), { status: 400 });
+    }
 
     const result = streamText({
         model: google('gemini-3-flash-preview'),
@@ -54,3 +76,5 @@ export async function POST(req: Request) {
 
     return result.toUIMessageStreamResponse();
 }
+
+
