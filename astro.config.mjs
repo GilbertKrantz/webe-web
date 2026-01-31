@@ -8,6 +8,6 @@ export default defineConfig({
     integrations: [react(), tailwind({
         applyBaseStyles: false,
     })],
-    output: 'static',
+    output: 'hybrid',
     adapter: vercel(),
 });
