@@ -19,48 +19,59 @@ export default function Hero() {
     if (!section) return;
 
     const ctx = gsap.context(() => {
-      // Auto-play entrance animation on load
-      const loadTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+      const mm = gsap.matchMedia();
 
-      // Lines draw
-      loadTl.fromTo([line1Ref.current, line2Ref.current],
-        { scaleX: 0 },
-        { scaleX: 1, duration: 0.9, stagger: 0.1, transformOrigin: 'left' },
-        0
-      );
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        // Auto-play entrance animation on load
+        const loadTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-      // Headline words stagger
-      const words = headlineRef.current?.querySelectorAll('.word');
-      if (words) {
-        loadTl.fromTo(words,
-          { y: 40, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.9, stagger: 0.06 },
-          0.2
+        // Lines draw
+        loadTl.fromTo([line1Ref.current, line2Ref.current],
+          { scaleX: 0 },
+          { scaleX: 1, duration: 0.9, stagger: 0.1, transformOrigin: 'left' },
+          0
         );
-      }
 
-      // Subheadline
-      loadTl.fromTo(subheadRef.current,
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.7 },
-        0.5
-      );
+        // Headline words stagger
+        const words = headlineRef.current?.querySelectorAll('.word');
+        if (words) {
+          loadTl.fromTo(words,
+            { y: 40, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.9, stagger: 0.06 },
+            0.2
+          );
+        }
 
-      // CTA
-      loadTl.fromTo(ctaRef.current,
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.7 },
-        0.6
-      );
+        // Subheadline
+        loadTl.fromTo(subheadRef.current,
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.7 },
+          0.5
+        );
 
-      // Location
-      loadTl.fromTo(locationRef.current,
-        { y: 10, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6 },
-        0.7
-      );
+        // CTA
+        loadTl.fromTo(ctaRef.current,
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.7 },
+          0.6
+        );
+
+        // Location
+        loadTl.fromTo(locationRef.current,
+          { y: 10, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6 },
+          0.7
+        );
+      });
+
+      mm.add("(prefers-reduced-motion: reduce)", () => {
+        gsap.set([line1Ref.current, line2Ref.current, subheadRef.current, ctaRef.current, locationRef.current], { opacity: 1, y: 0, scaleX: 1 });
+        const words = headlineRef.current?.querySelectorAll('.word');
+        if (words) gsap.set(words, { opacity: 1, y: 0 });
+      });
 
       // Scroll-driven exit animation
+      const words = headlineRef.current?.querySelectorAll('.word');
       const scrollTl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
@@ -164,14 +175,14 @@ export default function Hero() {
           <a
             href="#projects"
             onClick={handleScrollToProjects}
-            className="group flex items-center gap-3 px-6 py-3 border border-primary text-primary font-mono text-sm uppercase tracking-[0.14em] hover:bg-primary hover:text-background transition-colors"
+            className="group flex items-center gap-3 px-6 py-3 border border-primary text-primary font-mono text-sm uppercase tracking-[0.14em] hover:bg-primary hover:text-background transition-colors touch-manipulation"
           >
             View Projects
             <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
           </a>
           <a
             href="#"
-            className="flex items-center gap-2 text-muted-foreground font-mono text-sm uppercase tracking-[0.14em] hover:text-lime transition-colors"
+            className="flex items-center gap-2 text-muted-foreground font-mono text-sm uppercase tracking-[0.14em] hover:text-lime transition-colors touch-manipulation"
           >
             <FileDown className="w-4 h-4" />
             Download CV

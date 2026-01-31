@@ -100,7 +100,7 @@ export default function Navigation() {
           </nav>
 
           {/* Decorative Lines */}
-          <div className="absolute bottom-8 md:bottom-12 left-4 md:left-[7vw] right-4 md:right-[7vw] flex items-center gap-4">
+          <div className="absolute bottom-8 md:bottom-12 left-4 md:left-[7vw] right-4 md:right-[7vw] flex items-center gap-4 pb-safe">
             <div className="flex-1 h-px line-secondary"></div>
             <span className="lime-square"></span>
             <div className="flex-1 h-px line-secondary"></div>

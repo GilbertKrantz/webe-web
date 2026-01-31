@@ -79,14 +79,14 @@ function App() {
 
       {/* Main Content */}
       <main className="relative">
-        <Hero />
-        <About />
-        <Projects />
-        <Experience />
-        <Publications />
-        <Skills />
-        <Contact />
-        <ThankYou />
+        <div className="content-auto"><Hero /></div>
+        <div className="content-auto"><About /></div>
+        <div className="content-auto"><Projects /></div>
+        <div className="content-auto"><Experience /></div>
+        <div className="content-auto"><Publications /></div>
+        <div className="content-auto"><Skills /></div>
+        <div className="content-auto"><Contact /></div>
+        <div className="content-auto"><ThankYou /></div>
         <Footer />
         <SpeedInsights />
         <Chatbot />

@@ -158,6 +158,9 @@ export default function Contact() {
               </label>
               <input
                 type="text"
+                name="name"
+                id="name"
+                autoComplete="name"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 className="w-full bg-transparent border-b border-white/20 py-3 text-foreground focus:border-primary focus:outline-none transition-colors"
@@ -173,6 +176,11 @@ export default function Contact() {
               </label>
               <input
                 type="email"
+                name="email"
+                id="email"
+                autoComplete="email"
+                inputMode="email"
+                spellCheck={false}
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 className="w-full bg-transparent border-b border-white/20 py-3 text-foreground focus:border-primary focus:outline-none transition-colors"
@@ -187,11 +195,13 @@ export default function Contact() {
                 Message
               </label>
               <textarea
+                name="message"
+                id="message"
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 className="w-full bg-transparent border-b border-white/20 py-3 text-foreground focus:border-primary focus:outline-none transition-colors resize-none"
                 rows={4}
-                placeholder="Tell me about your project..."
+                placeholder="Tell me about your project…"
                 required
               />
             </div>
