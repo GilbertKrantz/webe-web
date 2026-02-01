@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { ThemeToggle } from './ThemeToggle';
 
 const menuItems = [
   { label: 'Work', href: '#projects' },
@@ -51,14 +52,19 @@ export default function Navigation() {
           Wilbert Chandra
         </a>
 
-        {/* Menu Button */}
-        <button
-          onClick={() => setIsOpen(true)}
-          className="font-mono text-xs md:text-sm uppercase tracking-[0.14em] text-foreground hover:text-primary transition-colors flex items-center gap-2"
-        >
-          <span className="hidden sm:inline">Menu</span>
-          <Menu className="w-4 h-4" />
-        </button>
+        {/* Right side controls */}
+        <div className="flex items-center gap-2 md:gap-4">
+          <ThemeToggle />
+
+          {/* Menu Button */}
+          <button
+            onClick={() => setIsOpen(true)}
+            className="font-mono text-xs md:text-sm uppercase tracking-[0.14em] text-foreground hover:text-primary transition-colors flex items-center gap-2"
+          >
+            <span className="hidden sm:inline">Menu</span>
+            <Menu className="w-4 h-4" />
+          </button>
+        </div>
       </header>
 
       {/* Full-screen Menu Overlay */}
@@ -85,10 +91,12 @@ export default function Navigation() {
                 onClick={(e) => handleLinkClick(e, item.href)}
                 className="group flex items-center gap-4 text-foreground hover:text-primary transition-colors"
                 style={{
+                  transitionProperty: 'all',
+                  transitionDuration: '0.4s',
+                  transitionTimingFunction: 'ease',
                   transitionDelay: isOpen ? `${index * 50}ms` : '0ms',
                   opacity: isOpen ? 1 : 0,
                   transform: isOpen ? 'translateY(0)' : 'translateY(20px)',
-                  transition: 'all 0.4s ease'
                 }}
               >
                 <span className="lime-square opacity-0 group-hover:opacity-100 transition-opacity"></span>
