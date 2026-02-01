@@ -1,15 +1,28 @@
-import { useTheme } from 'next-themes';
-import { Sun, Moon } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { Sun, Moon } from 'lucide-react';
 
 export function ThemeToggle() {
-    const { theme, setTheme } = useTheme();
+    const [theme, setTheme] = useState<'light' | 'dark'>('dark');
     const [mounted, setMounted] = useState(false);
 
-    // Prevent hydration mismatch
+    // Read theme from localStorage on mount
     useEffect(() => {
         setMounted(true);
+        const stored = localStorage.getItem('theme') as 'light' | 'dark' | null;
+        if (stored) {
+            setTheme(stored);
+        }
     }, []);
+
+    // Apply theme changes
+    const toggleTheme = () => {
+        const newTheme = theme === 'dark' ? 'light' : 'dark';
+        setTheme(newTheme);
+        localStorage.setItem('theme', newTheme);
+
+        // Update the HTML class
+        document.documentElement.classList.toggle('light', newTheme === 'light');
+    };
 
     if (!mounted) {
         return (
@@ -24,7 +37,7 @@ export function ThemeToggle() {
 
     return (
         <button
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            onClick={toggleTheme}
             className="p-2 text-foreground hover:text-primary transition-colors"
             aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
         >

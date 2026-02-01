@@ -91,10 +91,12 @@ export default function Navigation() {
                 onClick={(e) => handleLinkClick(e, item.href)}
                 className="group flex items-center gap-4 text-foreground hover:text-primary transition-colors"
                 style={{
+                  transitionProperty: 'all',
+                  transitionDuration: '0.4s',
+                  transitionTimingFunction: 'ease',
                   transitionDelay: isOpen ? `${index * 50}ms` : '0ms',
                   opacity: isOpen ? 1 : 0,
                   transform: isOpen ? 'translateY(0)' : 'translateY(20px)',
-                  transition: 'all 0.4s ease'
                 }}
               >
                 <span className="lime-square opacity-0 group-hover:opacity-100 transition-opacity"></span>
