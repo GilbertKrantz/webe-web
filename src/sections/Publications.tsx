@@ -2,29 +2,15 @@ import { useRef, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ExternalLink } from 'lucide-react';
+import type { Publication } from '../lib/types';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const publications = [
-  {
-    id: 1,
-    title: 'Multiclass Eye Disease Detection',
-    venue: 'Procedia Computer Science (Elsevier)',
-    link: 'https://doi.org/10.1016/j.procs.2025.09.079',
-    abstract: 'Lightweight deep learning for 9 retinal conditions; EfficientViT achieved ROC-AUC 0.9780 with only 3 million parameters.',
-    tags: ['PyTorch', 'EfficientViT', 'Computer Vision']
-  },
-  {
-    id: 2,
-    title: 'RSNA Degenerative Lumbar Spine Classification',
-    venue: 'IEEE Xplore',
-    link: 'https://ieeexplore.ieee.org/document/10933461',
-    abstract: 'Automated spinal condition detection using CNN ensembles on MRI datasets. Led technical implementation of multiple diverse architectures.',
-    tags: ['PyTorch', 'Medical Imaging', 'Ensemble Learning']
-  }
-];
+interface PublicationsProps {
+  publications: Publication[];
+}
 
-export default function Publications() {
+export default function Publications({ publications }: PublicationsProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);

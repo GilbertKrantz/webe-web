@@ -1,46 +1,15 @@
 import { useRef, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import type { Experience as ExperienceType } from '../lib/types';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const experiences = [
-  {
-    id: 1,
-    role: 'Data Engineer Intern',
-    company: 'Samsung R&D Institute Indonesia',
-    date: 'Mar 2025 – Present',
-    bullets: [
-      'Led end-to-end internal AI service using RAG + LangChain.',
-      'Automated Airflow pipelines and built CI/CD with Docker + GitHub Actions.',
-      'Improved data governance and AWS architecture.'
-    ]
-  },
-  {
-    id: 2,
-    role: 'Backend & AI Engineer',
-    company: 'UniPal / PKM Indonesia',
-    date: 'Jul 2024 – Sep 2024',
-    bullets: [
-      'Architected backend service for real-time conversational AI interactions.',
-      'Built speech-processing pipeline with Google STT and ElevenLabs TTS.',
-      'Orchestrated core logic using Google Gemini for intelligent responses.'
-    ]
-  },
-  {
-    id: 3,
-    role: 'Lead AI Engineer',
-    company: 'MRI Segmentation Project',
-    date: 'Jun 2024 – Dec 2024',
-    bullets: [
-      'Spearheaded end-to-end deep learning model for medical scan segmentation.',
-      'Engineered CNN architecture for precise ROI identification.',
-      'Achieved high segmentation accuracy through rigorous hyperparameter tuning.'
-    ]
-  }
-];
+interface ExperienceProps {
+  experiences: ExperienceType[];
+}
 
-export default function Experience() {
+export default function Experience({ experiences }: ExperienceProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const entryRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -134,7 +103,7 @@ export default function Experience() {
               {/* Date - left side on desktop */}
               <div className="md:w-[20%] flex-shrink-0">
                 <span className="font-mono text-xs md:text-sm uppercase tracking-[0.14em] text-primary">
-                  {exp.date}
+                  {exp.date_range}
                 </span>
               </div>
 

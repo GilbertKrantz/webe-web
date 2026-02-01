@@ -2,37 +2,15 @@ import { useRef, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowUpRight } from 'lucide-react';
+import type { Project } from '../lib/types';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const projects = [
-  {
-    id: 1,
-    title: 'SatuDua',
-    subtitle: 'Emergency Response System',
-    meta: 'Compfest 2025 • React Native • FastAPI • Azure AI',
-    description: 'Live calling with real-time transcription, AI summaries, and dispatcher dashboards. Built for the AI Innovation Challenge hosted by University of Indonesia.',
-    hasLink: false
-  },
-  {
-    id: 2,
-    title: 'UniPal',
-    subtitle: 'Conversational AI',
-    meta: 'PKM Indonesia • Python • Gemini • ElevenLabs',
-    description: 'Speech-to-text → LLM → lifelike voice, built for low-latency interaction. Real-time conversational AI with seamless speech processing pipeline.',
-    hasLink: false
-  },
-  {
-    id: 3,
-    title: 'MRI Segmentation',
-    subtitle: 'Medical Imaging',
-    meta: 'Deep Learning • PyTorch • Computer Vision',
-    description: 'Automated ROI segmentation with strong Dice/IoU on high-dimensional scans. End-to-end deep learning model for medical analysis.',
-    hasLink: false
-  }
-];
+interface ProjectsProps {
+  projects: Project[];
+}
 
-export default function Projects() {
+export default function Projects({ projects }: ProjectsProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -172,9 +150,9 @@ export default function Projects() {
                 </p>
 
                 {/* Case Study Link - non-clickable if no link */}
-                {project.hasLink ? (
+                {project.has_link ? (
                   <a
-                    href="#"
+                    href={project.link_url || '#'}
                     className="group inline-flex items-center gap-2 text-foreground font-mono text-sm uppercase tracking-[0.14em] hover:text-primary transition-colors"
                   >
                     View case study

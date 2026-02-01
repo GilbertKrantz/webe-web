@@ -1,29 +1,15 @@
 import { useRef, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import type { SkillCategory } from '../lib/types';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const skillCategories = [
-  {
-    title: 'Languages',
-    skills: ['Python', 'SQL']
-  },
-  {
-    title: 'AI & Frameworks',
-    skills: ['TensorFlow', 'PyTorch', 'LangChain', 'Airflow', 'VLLM', 'RAG']
-  },
-  {
-    title: 'Cloud & Tools',
-    skills: ['AWS', 'Docker', 'GitHub Actions', 'Milvus']
-  },
-  {
-    title: 'Skills',
-    skills: ['Data Modeling', 'Analysis', 'Visualization']
-  }
-];
+interface SkillsProps {
+  skillCategories: SkillCategory[];
+}
 
-export default function Skills() {
+export default function Skills({ skillCategories }: SkillsProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const colRefs = useRef<(HTMLDivElement | null)[]>([]);
