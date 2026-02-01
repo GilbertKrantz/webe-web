@@ -87,6 +87,9 @@ temp/
 # Vite
 .vite/
 
+# Astro
+.astro/
+
 # Rollup
 .rollup.cache/
 

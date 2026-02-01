@@ -1,18 +1,21 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Navigation from '../components/Navigation';
-import Hero from '../sections/Hero';
-import About from '../sections/About';
-import Projects from '../sections/Projects';
-import Experience from '../sections/Experience';
-import Publications from '../sections/Publications';
-import Skills from '../sections/Skills';
-import Contact from '../sections/Contact';
-import ThankYou from '../sections/ThankYou';
-import Footer from '../sections/Footer';
-import { Chatbot } from '../components/Chatbot';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navigation from "../components/Navigation";
+import Hero from "../sections/Hero";
+import About from "../sections/About";
+import Projects from "../sections/Projects";
+import Experience from "../sections/Experience";
+import Publications from "../sections/Publications";
+import Skills from "../sections/Skills";
+import Contact from "../sections/Contact";
+import ThankYou from "../sections/ThankYou";
+import Footer from "../sections/Footer";
+import { Chatbot } from "../components/Chatbot";
+import { getAllPortfolioData } from "../lib/db";
 
-// Speed Insights will be handled separately or kept as a React component if needed
+// Fetch all portfolio data from database
+const { experiences, projects, skillCategories, publications } =
+	await getAllPortfolioData();
 ---
 
 <BaseLayout>
@@ -20,10 +23,18 @@ import { Chatbot } from '../components/Chatbot';
 	<main class="relative">
 		<div class="content-auto"><Hero client:load /></div>
 		<div class="content-auto"><About client:visible /></div>
-		<div class="content-auto"><Projects client:visible /></div>
-		<div class="content-auto"><Experience client:visible /></div>
-		<div class="content-auto"><Publications client:visible /></div>
-		<div class="content-auto"><Skills client:visible /></div>
+		<div class="content-auto">
+			<Projects client:visible projects={projects} />
+		</div>
+		<div class="content-auto">
+			<Experience client:visible experiences={experiences} />
+		</div>
+		<div class="content-auto">
+			<Publications client:visible publications={publications} />
+		</div>
+		<div class="content-auto">
+			<Skills client:visible skillCategories={skillCategories} />
+		</div>
 		<div class="content-auto"><Contact client:visible /></div>
 		<div class="content-auto"><ThankYou client:visible /></div>
 		<Footer client:visible />
@@ -32,8 +43,8 @@ import { Chatbot } from '../components/Chatbot';
 </BaseLayout>
 
 <script>
-	import { gsap } from 'gsap';
-	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+	import gsap from "gsap";
+	import ScrollTrigger from "gsap/ScrollTrigger";
 
 	gsap.registerPlugin(ScrollTrigger);
 
@@ -41,39 +52,47 @@ import { Chatbot } from '../components/Chatbot';
 	const initScrollSnap = () => {
 		const timeout = setTimeout(() => {
 			const pinned = ScrollTrigger.getAll()
-				.filter(st => st.vars.pin)
+				.filter((st) => st.vars.pin)
 				.sort((a, b) => a.start - b.start);
 
 			const maxScroll = ScrollTrigger.maxScroll(window);
 
 			if (!maxScroll || pinned.length === 0) return;
 
-			const pinnedRanges = pinned.map(st => ({
+			const pinnedRanges = pinned.map((st) => ({
 				start: st.start / maxScroll,
 				end: (st.end ?? st.start) / maxScroll,
-				center: (st.start + ((st.end ?? st.start) - st.start) * 0.5) / maxScroll,
+				center:
+					(st.start + ((st.end ?? st.start) - st.start) * 0.5) /
+					maxScroll,
 			}));
 
 			ScrollTrigger.create({
 				snap: {
 					snapTo: (value: number) => {
 						const inPinned = pinnedRanges.some(
-							r => value >= r.start - 0.02 && value <= r.end + 0.02
+							(r) =>
+								value >= r.start - 0.02 &&
+								value <= r.end + 0.02,
 						);
 
 						if (!inPinned) return value;
 
-						const target = pinnedRanges.reduce((closest, r) =>
-							Math.abs(r.center - value) < Math.abs(closest - value) ? r.center : closest,
-							pinnedRanges[0]?.center ?? 0
+						const target = pinnedRanges.reduce(
+							(closest, r) =>
+								Math.abs(r.center - value) <
+								Math.abs(closest - value)
+									? r.center
+									: closest,
+							pinnedRanges[0]?.center ?? 0,
 						);
 
 						return target;
 					},
 					duration: { min: 0.15, max: 0.35 },
 					delay: 0,
-					ease: 'power2.out'
-				}
+					ease: "power2.out",
+				},
 			});
 		}, 100);
 

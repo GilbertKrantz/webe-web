@@ -8,6 +8,11 @@ export default defineConfig({
     integrations: [react(), tailwind({
         applyBaseStyles: false,
     })],
-    output: 'static',
+    output: 'server',
     adapter: vercel(),
+    vite: {
+        ssr: {
+            noExternal: ['gsap']
+        }
+    }
 });

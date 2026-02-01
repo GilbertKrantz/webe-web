@@ -1,6 +1,6 @@
 import { useRef, useLayoutEffect, useState } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 import { Mail, Phone, Send } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
