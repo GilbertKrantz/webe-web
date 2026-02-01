@@ -1,5 +1,5 @@
 import { useRef, useLayoutEffect } from 'react';
-import { gsap } from 'gsap';
+import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { Linkedin, Github, Mail } from 'lucide-react';
 
