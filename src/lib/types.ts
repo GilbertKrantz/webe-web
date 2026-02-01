@@ -1,5 +1,43 @@
-// Portfolio data types
+// UI-facing portfolio data types (camelCase)
 export interface Experience {
+    id: number;
+    role: string;
+    company: string;
+    dateRange: string;
+    bullets: string[];
+    sortOrder: number;
+}
+
+export interface Project {
+    id: number;
+    title: string;
+    subtitle: string;
+    meta: string;
+    description: string;
+    hasLink: boolean;
+    linkUrl: string | null;
+    sortOrder: number;
+}
+
+export interface SkillCategory {
+    id: number;
+    title: string;
+    skills: string[];
+    sortOrder: number;
+}
+
+export interface Publication {
+    id: number;
+    title: string;
+    venue: string;
+    link: string;
+    abstract: string;
+    tags: string[];
+    sortOrder: number;
+}
+
+// Database row types (snake_case from DB)
+export interface ExperienceRow {
     id: number;
     role: string;
     company: string;
@@ -8,7 +46,7 @@ export interface Experience {
     sort_order: number;
 }
 
-export interface Project {
+export interface ProjectRow {
     id: number;
     title: string;
     subtitle: string;
@@ -19,24 +57,6 @@ export interface Project {
     sort_order: number;
 }
 
-export interface SkillCategory {
-    id: number;
-    title: string;
-    skills: string[];
-    sort_order: number;
-}
-
-export interface Publication {
-    id: number;
-    title: string;
-    venue: string;
-    link: string;
-    abstract: string;
-    tags: string[];
-    sort_order: number;
-}
-
-// Database row types (before transformation)
 export interface SkillCategoryRow {
     id: number;
     title: string;
@@ -47,5 +67,15 @@ export interface SkillRow {
     id: number;
     category_id: number;
     name: string;
+    sort_order: number;
+}
+
+export interface PublicationRow {
+    id: number;
+    title: string;
+    venue: string;
+    link: string;
+    abstract: string;
+    tags: string[];
     sort_order: number;
 }

@@ -54,6 +54,9 @@ CREATE TABLE IF NOT EXISTS publications (
 -- Seed Data
 -- =============================================
 
+-- Make script idempotent by clearing existing data before inserting
+TRUNCATE TABLE experiences, projects, publications, skills, skill_categories RESTART IDENTITY CASCADE;
+
 -- Experiences
 INSERT INTO experiences (role, company, date_range, bullets, sort_order) VALUES
 (
