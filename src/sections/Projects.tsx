@@ -149,10 +149,10 @@ export default function Projects({ projects }: ProjectsProps) {
                   {project.description}
                 </p>
 
-                {/* Case Study Link - non-clickable if no link */}
-                {project.has_link ? (
+                {/* Case Study Link - only show if has_link and valid link_url */}
+                {project.hasLink && project.linkUrl ? (
                   <a
-                    href={project.link_url || '#'}
+                    href={project.linkUrl}
                     className="group inline-flex items-center gap-2 text-foreground font-mono text-sm uppercase tracking-[0.14em] hover:text-primary transition-colors"
                   >
                     View case study

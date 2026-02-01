@@ -103,7 +103,7 @@ export default function Experience({ experiences }: ExperienceProps) {
               {/* Date - left side on desktop */}
               <div className="md:w-[20%] flex-shrink-0">
                 <span className="font-mono text-xs md:text-sm uppercase tracking-[0.14em] text-primary">
-                  {exp.date_range}
+                  {exp.dateRange}
                 </span>
               </div>
 
