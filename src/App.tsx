@@ -70,7 +70,7 @@ function App() {
   }, []);
 
   return (
-    <div className="relative bg-background min-h-screen">
+    <div className="relative bg-background min-h-screen transition-colors duration-300">
       {/* Grain Overlay */}
       <div className="grain-overlay"></div>
 

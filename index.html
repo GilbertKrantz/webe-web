@@ -5,6 +5,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Wilbert Chandra Portfolio</title>
+  <script>
+    // FOIT Prevention: Apply theme before render to prevent flash
+    (function () {
+      var theme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.classList.toggle('light', theme === 'light');
+    })();
+  </script>
 </head>
 
 <body>
