@@ -1,6 +1,6 @@
 import { useRef, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 import { Linkedin, Github, Mail } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -39,19 +39,19 @@ export default function ThankYou() {
         { y: 0, opacity: 1, ease: 'none' },
         0
       );
-      
+
       scrollTl.fromTo(sublineRef.current,
         { y: '10vh', opacity: 0 },
         { y: 0, opacity: 1, ease: 'none' },
         0.10
       );
-      
+
       scrollTl.fromTo(socialsRef.current,
         { y: '10vh', opacity: 0 },
         { y: 0, opacity: 1, ease: 'none' },
         0.15
       );
-      
+
       scrollTl.fromTo(lineRef.current,
         { scaleX: 0 },
         { scaleX: 1, ease: 'none', transformOrigin: 'center' },
@@ -64,13 +64,13 @@ export default function ThankYou() {
         { opacity: 0.35, ease: 'power2.in' },
         0.70
       );
-      
+
       scrollTl.fromTo(sublineRef.current,
         { opacity: 1 },
         { opacity: 0.2, ease: 'power2.in' },
         0.72
       );
-      
+
       scrollTl.fromTo(socialsRef.current,
         { opacity: 1 },
         { opacity: 0.2, ease: 'power2.in' },
@@ -83,37 +83,37 @@ export default function ThankYou() {
   }, []);
 
   return (
-    <section 
-      ref={sectionRef} 
+    <section
+      ref={sectionRef}
       className="section-pinned bg-[#0B0B0D] z-[80] flex items-center justify-center"
     >
       {/* Horizontal Line */}
-      <div 
+      <div
         ref={lineRef}
         className="absolute top-1/2 left-[10vw] right-[10vw] h-px line-secondary origin-center"
         style={{ transform: 'scaleX(0)' }}
       />
-      
+
       {/* Centered Content */}
       <div className="relative text-center px-6 z-10">
         {/* Headline */}
-        <h2 
+        <h2
           ref={headlineRef}
           className="text-[clamp(40px,14vw,120px)] md:text-[clamp(60px,10vw,140px)] font-bold text-[#F4F4F5] leading-[0.85] mb-4 md:mb-6 opacity-0"
         >
           Thanks.
         </h2>
-        
+
         {/* Subline */}
-        <p 
+        <p
           ref={sublineRef}
           className="text-[#A7A7AA] text-base md:text-xl mb-8 md:mb-12 opacity-0"
         >
           Open to collaborations, research, and product work.
         </p>
-        
+
         {/* Socials */}
-        <div 
+        <div
           ref={socialsRef}
           className="flex flex-row items-center justify-center gap-6 md:gap-8 opacity-0"
         >

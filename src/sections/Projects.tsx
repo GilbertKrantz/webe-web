@@ -1,6 +1,6 @@
 import { useRef, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 import { ArrowUpRight } from 'lucide-react';
 import type { Project } from '../lib/types';
 
