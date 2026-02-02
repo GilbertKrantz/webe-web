@@ -1,0 +1,28 @@
+# Wilbert Chandra - Data & AI Engineer
+
+Wilbert Chandra is a Data Engineer and AI Engineer based in Jakarta, Indonesia, specializing in scalable data pipelines, distributed AI systems, and production-ready architectures.
+
+## Roles
+- **Data Engineer Intern** at **Samsung R&D Institute Indonesia** (Mar 2025 – Present)
+- **Backend & AI Engineer** at **UniPal / PKM Indonesia** (Jul 2024 – Sep 2024)
+- **Lead AI Engineer** for **MRI Segmentation Project** (Jun 2024 – Dec 2024)
+
+## Technical Stack
+- **Languages**: Python, SQL
+- **AI & Frameworks**: TensorFlow, PyTorch, LangChain, Airflow, VLLM, RAG
+- **Cloud & Infrastructure**: AWS, Docker, GitHub Actions, Milvus, Neon (PostgreSQL), Vercel
+- **Frontend**: Astro, React 19, Tailwind CSS, GSAP
+
+## Key Projects
+- **SatuDua**: Emergency Response System featuring real-time transcription and AI summaries. Built with React Native, FastAPI, and Azure AI.
+- **UniPal**: Conversational AI platform with low-latency interaction using Python, Gemini, and ElevenLabs.
+- **MRI Segmentation**: Deep learning model for medical scan segmentation using PyTorch and CNN architectures.
+
+## Selected Publications
+- **Multiclass Eye Disease Detection**: Published in *Procedia Computer Science (Elsevier)*. Focuses on lightweight deep learning for retinal conditions.
+- **RSNA Degenerative Lumbar Spine Classification**: Published in *IEEE Xplore*. Focuses on automated spinal condition detection using CNN ensembles.
+
+## Contact
+- **Website**: https://wilbertchandra.com (or your domain)
+- **GitHub**: https://github.com/GilbertKrantz
+- **Location**: Jakarta, Indonesia
