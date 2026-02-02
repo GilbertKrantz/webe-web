@@ -23,7 +23,7 @@ ${projects.map(proj => `- **${proj.title}**: ${proj.subtitle}. ${proj.descriptio
 ${publications.map(pub => `- **${pub.title}**: Published in *${pub.venue}*. ${pub.abstract}`).join('\n')}
 
 ## Contact
-- **Website**: https://wilbertchandra.com
+- **Website**: https://webe-dev.vercel.app
 - **GitHub**: https://github.com/GilbertKrantz
 - **Location**: Jakarta, Indonesia
 `;
