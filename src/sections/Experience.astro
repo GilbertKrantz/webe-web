@@ -77,8 +77,9 @@ const { experiences } = Astro.props;
     // Clean up existing ScrollTrigger instances
     ScrollTrigger.getAll().forEach((trigger) => {
       const triggerElement = trigger.vars.trigger;
-      if (triggerElement === '.experience-section' || 
-          (typeof triggerElement === 'object' && triggerElement?.closest('.experience-section'))) {
+      if (typeof triggerElement === 'string' && triggerElement.includes('.experience-section')) {
+        trigger.kill();
+      } else if (typeof triggerElement === 'object' && triggerElement?.closest?.('.experience-section')) {
         trigger.kill();
       }
     });

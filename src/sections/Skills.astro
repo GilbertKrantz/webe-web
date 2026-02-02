@@ -72,8 +72,9 @@ const { skillCategories } = Astro.props;
     // Clean up existing ScrollTrigger instances
     ScrollTrigger.getAll().forEach((trigger) => {
       const triggerElement = trigger.vars.trigger;
-      if (triggerElement === '.skills-section' || 
-          (typeof triggerElement === 'object' && triggerElement?.closest('.skills-section'))) {
+      if (typeof triggerElement === 'string' && triggerElement.includes('.skills-section')) {
+        trigger.kill();
+      } else if (typeof triggerElement === 'object' && triggerElement?.closest?.('.skills-section')) {
         trigger.kill();
       }
     });

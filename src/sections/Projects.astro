@@ -96,8 +96,9 @@ const { projects } = Astro.props;
     // Clean up existing ScrollTrigger instances
     ScrollTrigger.getAll().forEach((trigger) => {
       const triggerElement = trigger.vars.trigger;
-      if (triggerElement === '.projects-section' || 
-          (typeof triggerElement === 'object' && triggerElement?.closest('.projects-section'))) {
+      if (typeof triggerElement === 'string' && triggerElement.includes('.projects-section')) {
+        trigger.kill();
+      } else if (typeof triggerElement === 'object' && triggerElement?.closest?.('.projects-section')) {
         trigger.kill();
       }
     });
