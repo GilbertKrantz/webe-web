@@ -1,5 +1,6 @@
 ---
-import { ArrowUp } from 'lucide-react';
+import { icons } from 'lucide-static';
+const arrowUpIcon = icons['arrow-up'];
 ---
 
 <footer
@@ -19,7 +20,7 @@ import { ArrowUp } from 'lucide-react';
       class="group flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors font-mono text-xs uppercase tracking-[0.14em]"
     >
       Back to top
-      <ArrowUp className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
+      <svg class="w-4 h-4 group-hover:-translate-y-1 transition-transform" set:html={arrowUpIcon} />
     </button>
 
     {/* Right: Links */}
@@ -57,6 +58,13 @@ import { ArrowUp } from 'lucide-react';
   gsap.registerPlugin(ScrollTrigger);
 
   const initFooter = () => {
+    // Clean up existing ScrollTrigger instances
+    ScrollTrigger.getAll().forEach((trigger) => {
+      if (trigger.vars.trigger === '.footer-section') {
+        trigger.kill();
+      }
+    });
+
     const section = document.querySelector('.footer-section');
     if (!section) return;
 

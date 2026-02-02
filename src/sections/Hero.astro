@@ -1,5 +1,7 @@
 ---
-import { ArrowDown, FileDown } from 'lucide-react';
+import { icons } from 'lucide-static';
+const arrowDownIcon = icons['arrow-down'];
+const fileDownIcon = icons['file-down'];
 ---
 
 <section
@@ -42,13 +44,13 @@ import { ArrowDown, FileDown } from 'lucide-react';
         class="scroll-to-projects group flex items-center gap-3 px-6 py-3 border border-primary text-primary font-mono text-sm uppercase tracking-[0.14em] hover:bg-primary hover:text-background transition-colors touch-manipulation"
       >
         View Projects
-        <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
+        <svg class="w-4 h-4 group-hover:translate-y-1 transition-transform" set:html={arrowDownIcon} />
       </a>
       <a
         href="#"
         class="flex items-center gap-2 text-muted-foreground font-mono text-sm uppercase tracking-[0.14em] hover:text-lime transition-colors touch-manipulation"
       >
-        <FileDown className="w-4 h-4" />
+        <svg class="w-4 h-4" set:html={fileDownIcon} />
         Download CV
       </a>
     </div>
@@ -75,6 +77,13 @@ import { ArrowDown, FileDown } from 'lucide-react';
   gsap.registerPlugin(ScrollTrigger);
 
   const initHero = () => {
+    // Clean up existing ScrollTrigger instances
+    ScrollTrigger.getAll().forEach((trigger) => {
+      if (trigger.vars.trigger === '.hero-section') {
+        trigger.kill();
+      }
+    });
+
     const section = document.querySelector('.hero-section') as HTMLElement;
     if (!section) return;
 

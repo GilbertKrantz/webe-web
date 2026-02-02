@@ -1,5 +1,8 @@
 ---
-import { Mail, Phone, Send } from 'lucide-react';
+import { icons } from 'lucide-static';
+const mailIcon = icons['mail'];
+const phoneIcon = icons['phone'];
+const sendIcon = icons['send'];
 ---
 
 <section
@@ -39,7 +42,7 @@ import { Mail, Phone, Send } from 'lucide-react';
         href="mailto:wilbertchandra.official@gmail.com"
         class="group flex items-center gap-3 md:gap-4 text-foreground hover:text-primary transition-colors"
       >
-        <Mail className="w-4 md:w-5 h-4 md:h-5 flex-shrink-0" />
+        <svg class="w-4 md:w-5 h-4 md:h-5 flex-shrink-0" set:html={mailIcon} />
         <span class="font-mono text-xs md:text-sm break-all">
           wilbertchandra.official@gmail.com
         </span>
@@ -48,7 +51,7 @@ import { Mail, Phone, Send } from 'lucide-react';
         href="tel:+6285155156773"
         class="group flex items-center gap-3 md:gap-4 text-foreground hover:text-primary transition-colors"
       >
-        <Phone className="w-4 md:w-5 h-4 md:h-5 flex-shrink-0" />
+        <svg class="w-4 md:w-5 h-4 md:h-5 flex-shrink-0" set:html={phoneIcon} />
         <span class="font-mono text-xs md:text-sm">
           +62 851-5515-6773
         </span>
@@ -116,7 +119,7 @@ import { Mail, Phone, Send } from 'lucide-react';
           class="group flex items-center gap-3 px-8 py-4 bg-primary text-background font-mono text-sm uppercase tracking-[0.14em] font-medium hover:bg-foreground hover:text-background transition-colors mt-8"
         >
           Send message
-          <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" set:html={sendIcon} />
         </button>
       </form>
     </div>
@@ -130,6 +133,13 @@ import { Mail, Phone, Send } from 'lucide-react';
   gsap.registerPlugin(ScrollTrigger);
 
   const initContact = () => {
+    // Clean up existing ScrollTrigger instances
+    ScrollTrigger.getAll().forEach((trigger) => {
+      if (trigger.vars.trigger === '.contact-section') {
+        trigger.kill();
+      }
+    });
+
     const section = document.querySelector('.contact-section');
     if (!section) return;
 

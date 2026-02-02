@@ -1,6 +1,8 @@
 ---
-import { ExternalLink } from 'lucide-react';
+import { icons } from 'lucide-static';
 import type { Publication } from '../lib/types';
+
+const externalLinkIcon = icons['external-link'];
 
 interface Props {
   publications: Publication[];
@@ -73,7 +75,7 @@ const { publications } = Astro.props;
             class="group/link inline-flex items-center gap-2 text-foreground font-mono text-sm uppercase tracking-[0.14em] hover:text-primary transition-colors"
           >
             View DOI
-            <ExternalLink className="w-4 h-4 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
+            <svg class="w-4 h-4 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" set:html={externalLinkIcon} />
           </a>
         </div>
       </div>
@@ -88,6 +90,15 @@ const { publications } = Astro.props;
   gsap.registerPlugin(ScrollTrigger);
 
   const initPublications = () => {
+    // Clean up existing ScrollTrigger instances
+    ScrollTrigger.getAll().forEach((trigger) => {
+      const triggerElement = trigger.vars.trigger;
+      if (triggerElement === '.publications-section' || 
+          (typeof triggerElement === 'object' && triggerElement?.closest('.publications-section'))) {
+        trigger.kill();
+      }
+    });
+
     const section = document.querySelector('.publications-section');
     if (!section) return;
 

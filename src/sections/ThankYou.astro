@@ -1,10 +1,10 @@
 ---
-import { Linkedin, Github, Mail } from 'lucide-react';
+import { icons } from 'lucide-static';
 
 const socials = [
-  { name: 'LinkedIn', icon: Linkedin, href: 'https://linkedin.com/in/wilbert-chandra-630b0121a' },
-  { name: 'GitHub', icon: Github, href: 'https://github.com/GilbertKrantz' },
-  { name: 'Email', icon: Mail, href: 'mailto:wilbertchandra.official@gmail.com' }
+  { name: 'LinkedIn', icon: icons['linkedin'], href: 'https://linkedin.com/in/wilbert-chandra-630b0121a' },
+  { name: 'GitHub', icon: icons['github'], href: 'https://github.com/GilbertKrantz' },
+  { name: 'Email', icon: icons['mail'], href: 'mailto:wilbertchandra.official@gmail.com' }
 ];
 ---
 
@@ -37,7 +37,6 @@ const socials = [
       class="thank-you-socials flex flex-row items-center justify-center gap-6 md:gap-8 opacity-0"
     >
       {socials.map((social) => {
-        const Icon = social.icon;
         return (
           <a
             href={social.href}
@@ -46,7 +45,7 @@ const socials = [
             class="group flex flex-col items-center gap-2 md:gap-3 text-[#A7A7AA] hover:text-lime transition-colors"
           >
             <div class="w-10 md:w-12 h-10 md:h-12 border border-white/20 flex items-center justify-center group-hover:border-lime transition-colors">
-              <Icon className="w-4 md:w-5 h-4 md:h-5" />
+              <svg class="w-4 md:w-5 h-4 md:h-5" set:html={social.icon} />
             </div>
             <span class="font-mono text-xs uppercase tracking-[0.14em]">
               {social.name}
@@ -65,6 +64,13 @@ const socials = [
   gsap.registerPlugin(ScrollTrigger);
 
   const initThankYou = () => {
+    // Clean up existing ScrollTrigger instances
+    ScrollTrigger.getAll().forEach((trigger) => {
+      if (trigger.vars.trigger === '.thank-you-section') {
+        trigger.kill();
+      }
+    });
+
     const section = document.querySelector('.thank-you-section');
     if (!section) return;
 

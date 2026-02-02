@@ -69,6 +69,15 @@ const { skillCategories } = Astro.props;
   gsap.registerPlugin(ScrollTrigger);
 
   const initSkills = () => {
+    // Clean up existing ScrollTrigger instances
+    ScrollTrigger.getAll().forEach((trigger) => {
+      const triggerElement = trigger.vars.trigger;
+      if (triggerElement === '.skills-section' || 
+          (typeof triggerElement === 'object' && triggerElement?.closest('.skills-section'))) {
+        trigger.kill();
+      }
+    });
+
     const section = document.querySelector('.skills-section');
     if (!section) return;
 

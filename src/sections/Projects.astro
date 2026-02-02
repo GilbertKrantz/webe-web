@@ -1,6 +1,8 @@
 ---
-import { ArrowUpRight } from 'lucide-react';
+import { icons } from 'lucide-static';
 import type { Project } from '../lib/types';
+
+const arrowUpRightIcon = icons['arrow-up-right'];
 
 interface Props {
   projects: Project[];
@@ -69,12 +71,12 @@ const { projects } = Astro.props;
                 class="group inline-flex items-center gap-2 text-foreground font-mono text-sm uppercase tracking-[0.14em] hover:text-primary transition-colors"
               >
                 View case study
-                <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                <svg class="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" set:html={arrowUpRightIcon} />
               </a>
             ) : (
               <span class="inline-flex items-center gap-2 text-muted-foreground/40 font-mono text-sm uppercase tracking-[0.14em] cursor-default">
                 View case study
-                <ArrowUpRight className="w-4 h-4" />
+                <svg class="w-4 h-4" set:html={arrowUpRightIcon} />
               </span>
             )}
           </div>
@@ -91,6 +93,15 @@ const { projects } = Astro.props;
   gsap.registerPlugin(ScrollTrigger);
 
   const initProjects = () => {
+    // Clean up existing ScrollTrigger instances
+    ScrollTrigger.getAll().forEach((trigger) => {
+      const triggerElement = trigger.vars.trigger;
+      if (triggerElement === '.projects-section' || 
+          (typeof triggerElement === 'object' && triggerElement?.closest('.projects-section'))) {
+        trigger.kill();
+      }
+    });
+
     const section = document.querySelector('.projects-section');
     if (!section) return;
 

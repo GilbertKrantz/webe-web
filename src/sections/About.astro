@@ -1,5 +1,6 @@
 ---
-import { ArrowRight } from 'lucide-react';
+import { icons } from 'lucide-static';
+const arrowRightIcon = icons['arrow-right'];
 ---
 
 <section
@@ -44,7 +45,7 @@ import { ArrowRight } from 'lucide-react';
       >
         <span class="lime-square mr-2"></span>
         Read more
-        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" set:html={arrowRightIcon} />
       </a>
     </div>
   </div>
@@ -69,6 +70,13 @@ import { ArrowRight } from 'lucide-react';
   gsap.registerPlugin(ScrollTrigger);
 
   const initAbout = () => {
+    // Clean up existing ScrollTrigger instances
+    ScrollTrigger.getAll().forEach((trigger) => {
+      if (trigger.vars.trigger === '.about-section') {
+        trigger.kill();
+      }
+    });
+
     const section = document.querySelector('.about-section');
     if (!section) return;
 

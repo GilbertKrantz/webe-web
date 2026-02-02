@@ -74,6 +74,15 @@ const { experiences } = Astro.props;
   gsap.registerPlugin(ScrollTrigger);
 
   const initExperience = () => {
+    // Clean up existing ScrollTrigger instances
+    ScrollTrigger.getAll().forEach((trigger) => {
+      const triggerElement = trigger.vars.trigger;
+      if (triggerElement === '.experience-section' || 
+          (typeof triggerElement === 'object' && triggerElement?.closest('.experience-section'))) {
+        trigger.kill();
+      }
+    });
+
     const section = document.querySelector('.experience-section');
     if (!section) return;
 
