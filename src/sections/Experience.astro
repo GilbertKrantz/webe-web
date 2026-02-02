@@ -79,7 +79,7 @@ const { experiences } = Astro.props;
       const triggerElement = trigger.vars.trigger;
       if (typeof triggerElement === 'string' && triggerElement.includes('.experience-section')) {
         trigger.kill();
-      } else if (typeof triggerElement === 'object' && triggerElement?.closest?.('.experience-section')) {
+      } else if (typeof triggerElement === 'object' && triggerElement && typeof triggerElement.closest === 'function' && triggerElement.closest('.experience-section')) {
         trigger.kill();
       }
     });

@@ -98,7 +98,7 @@ const { projects } = Astro.props;
       const triggerElement = trigger.vars.trigger;
       if (typeof triggerElement === 'string' && triggerElement.includes('.projects-section')) {
         trigger.kill();
-      } else if (typeof triggerElement === 'object' && triggerElement?.closest?.('.projects-section')) {
+      } else if (typeof triggerElement === 'object' && triggerElement && typeof triggerElement.closest === 'function' && triggerElement.closest('.projects-section')) {
         trigger.kill();
       }
     });

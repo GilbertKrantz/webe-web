@@ -95,7 +95,7 @@ const { publications } = Astro.props;
       const triggerElement = trigger.vars.trigger;
       if (typeof triggerElement === 'string' && triggerElement.includes('.publications-section')) {
         trigger.kill();
-      } else if (typeof triggerElement === 'object' && triggerElement?.closest?.('.publications-section')) {
+      } else if (typeof triggerElement === 'object' && triggerElement && typeof triggerElement.closest === 'function' && triggerElement.closest('.publications-section')) {
         trigger.kill();
       }
     });
