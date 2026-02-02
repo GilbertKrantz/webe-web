@@ -1,15 +1,15 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Navigation from "../components/Navigation";
-import Hero from "../sections/Hero";
-import About from "../sections/About";
-import Projects from "../sections/Projects";
-import Experience from "../sections/Experience";
-import Publications from "../sections/Publications";
-import Skills from "../sections/Skills";
-import Contact from "../sections/Contact";
-import ThankYou from "../sections/ThankYou";
-import Footer from "../sections/Footer";
+import Hero from "../sections/Hero.astro";
+import About from "../sections/About.astro";
+import Projects from "../sections/Projects.astro";
+import Experience from "../sections/Experience.astro";
+import Publications from "../sections/Publications.astro";
+import Skills from "../sections/Skills.astro";
+import Contact from "../sections/Contact.astro";
+import ThankYou from "../sections/ThankYou.astro";
+import Footer from "../sections/Footer.astro";
 import { Chatbot } from "../components/Chatbot";
 import { getAllPortfolioData } from "../lib/db";
 
@@ -21,23 +21,23 @@ const { experiences, projects, skillCategories, publications } =
 <BaseLayout>
 	<Navigation client:load />
 	<main class="relative">
-		<div class="content-auto"><Hero client:load /></div>
-		<div class="content-auto"><About client:load /></div>
+		<div class="content-auto"><Hero /></div>
+		<div class="content-auto"><About /></div>
 		<div class="content-auto">
-			<Projects client:visible projects={projects} />
+			<Projects projects={projects} />
 		</div>
 		<div class="content-auto">
-			<Experience client:visible experiences={experiences} />
+			<Experience experiences={experiences} />
 		</div>
 		<div class="content-auto">
-			<Publications client:visible publications={publications} />
+			<Publications publications={publications} />
 		</div>
 		<div class="content-auto">
-			<Skills client:visible skillCategories={skillCategories} />
+			<Skills skillCategories={skillCategories} />
 		</div>
-		<div class="content-auto"><Contact client:visible /></div>
-		<div class="content-auto"><ThankYou client:visible /></div>
-		<Footer client:visible />
+		<div class="content-auto"><Contact /></div>
+		<div class="content-auto"><ThankYou /></div>
+		<Footer />
 		<Chatbot client:idle />
 	</main>
 </BaseLayout>

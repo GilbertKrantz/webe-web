@@ -1,0 +1,87 @@
+---
+import { ArrowUp } from 'lucide-react';
+---
+
+<footer
+  class="footer-section relative bg-background z-[90] py-6 md:py-8 px-4 md:px-[7vw] border-t border-white/10"
+>
+  <div
+    class="footer-content flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6 opacity-0"
+  >
+    {/* Left: Copyright */}
+    <p class="font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground text-center md:text-left">
+      © 2026 Wilbert Chandra
+    </p>
+
+    {/* Center: Back to Top */}
+    <button
+      id="back-to-top"
+      class="group flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors font-mono text-xs uppercase tracking-[0.14em]"
+    >
+      Back to top
+      <ArrowUp className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
+    </button>
+
+    {/* Right: Links */}
+    <div class="flex items-center gap-4 md:gap-6">
+      <a
+        href="https://linkedin.com/in/wilbert-chandra-630b0121a"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground hover:text-primary transition-colors"
+      >
+        LinkedIn
+      </a>
+      <a
+        href="https://github.com/GilbertKrantz"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground hover:text-primary transition-colors"
+      >
+        GitHub
+      </a>
+      <a
+        href="mailto:wilbertchandra.official@gmail.com"
+        class="font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground hover:text-primary transition-colors"
+      >
+        Email
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  import gsap from 'gsap';
+  import ScrollTrigger from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initFooter = () => {
+    const section = document.querySelector('.footer-section');
+    if (!section) return;
+
+    const content = section.querySelector('.footer-content');
+
+    gsap.fromTo(content,
+      { y: 12, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 90%',
+          end: 'top 70%',
+          scrub: true
+        }
+      }
+    );
+
+    const backToTop = document.getElementById('back-to-top');
+    backToTop?.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  };
+
+  initFooter();
+  document.addEventListener('astro:after-swap', initFooter);
+</script>

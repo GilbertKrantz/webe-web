@@ -1,0 +1,133 @@
+---
+import type { SkillCategory } from '../lib/types';
+
+interface Props {
+  skillCategories: SkillCategory[];
+}
+
+const { skillCategories } = Astro.props;
+---
+
+<section
+  id="skills"
+  class="skills-section relative bg-background z-[60] py-[8vh] px-4 md:px-[7vw]"
+>
+  {/* Header */}
+  <div class="skills-header flex flex-col md:flex-row md:items-end justify-between mb-[6vh] pb-6 border-b border-white/10 gap-4">
+    <h2 class="text-[clamp(32px,10vw,56px)] md:text-[clamp(40px,5vw,56px)] font-bold text-foreground">
+      SKILLS
+    </h2>
+    <span class="font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground">
+      Tools & Tech
+    </span>
+  </div>
+
+  {/* Skills Grid */}
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-x-4 md:gap-x-8 gap-y-8 md:gap-y-12">
+    {skillCategories.map((category, catIndex) => (
+      <div
+        class="skill-column opacity-0"
+        data-index={catIndex}
+      >
+        {/* Category Title */}
+        <h3 class="text-sm md:text-base font-bold text-foreground mb-4 md:mb-6 flex items-center gap-2 md:gap-3">
+          <span class="lime-square"></span>
+          {category.title}
+        </h3>
+
+        {/* Skills List */}
+        <div class="space-y-2 md:space-y-3">
+          {category.skills.map((skill) => (
+            <div
+              class="skill-row flex items-center gap-2 md:gap-4 opacity-0"
+            >
+              <div class="w-4 md:w-8 h-px line-secondary"></div>
+              <span class="text-muted-foreground font-mono text-xs md:text-sm uppercase tracking-wider">
+                {skill}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+
+  {/* Decorative Lines */}
+  <div class="mt-12 md:mt-16 flex items-center gap-4">
+    <div class="flex-1 h-px line-secondary"></div>
+    <span class="lime-square"></span>
+    <div class="flex-1 h-px line-secondary"></div>
+    <span class="lime-square"></span>
+    <div class="flex-1 h-px line-secondary"></div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import ScrollTrigger from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initSkills = () => {
+    const section = document.querySelector('.skills-section');
+    if (!section) return;
+
+    const header = section.querySelector('.skills-header');
+    const columns = section.querySelectorAll('.skill-column');
+
+    // Header animation
+    gsap.fromTo(header,
+      { y: '-4vh', opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        scrollTrigger: {
+          trigger: header,
+          start: 'top 80%',
+          end: 'top 55%',
+          scrub: true
+        }
+      }
+    );
+
+    // Column animations
+    columns.forEach((col, index) => {
+      const direction = index % 2 === 0 ? '-6vw' : '6vw';
+
+      gsap.fromTo(col,
+        { x: direction, opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          scrollTrigger: {
+            trigger: col,
+            start: 'top 80%',
+            end: 'top 55%',
+            scrub: true
+          }
+        }
+      );
+
+      // Skill rows stagger
+      const rows = col.querySelectorAll('.skill-row');
+      rows.forEach((row, rowIndex) => {
+        gsap.fromTo(row,
+          { opacity: 0, x: index % 2 === 0 ? -20 : 20 },
+          {
+            opacity: 1,
+            x: 0,
+            scrollTrigger: {
+              trigger: col,
+              start: `top ${70 - (rowIndex * 3)}%`,
+              end: `top ${55 - (rowIndex * 3)}%`,
+              scrub: true
+            }
+          }
+        );
+      });
+    });
+  };
+
+  initSkills();
+  document.addEventListener('astro:after-swap', initSkills);
+</script>

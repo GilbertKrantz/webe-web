@@ -1,0 +1,148 @@
+---
+import { ExternalLink } from 'lucide-react';
+import type { Publication } from '../lib/types';
+
+interface Props {
+  publications: Publication[];
+}
+
+const { publications } = Astro.props;
+---
+
+<section
+  id="publications"
+  class="publications-section relative bg-background z-50 py-[8vh] px-4 md:px-[7vw]"
+>
+  {/* Header */}
+  <div class="publications-header flex flex-col md:flex-row md:items-end justify-between mb-[6vh] pb-6 border-b border-white/10 gap-4">
+    <h2 class="text-[clamp(32px,10vw,56px)] md:text-[clamp(40px,5vw,56px)] font-bold text-foreground">
+      PUBLICATIONS
+    </h2>
+    <span class="font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground">
+      Research
+    </span>
+  </div>
+
+  {/* Cards Grid */}
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+    {publications.map((pub) => (
+      <div
+        class="publication-card relative group opacity-0"
+      >
+        {/* Border */}
+        <div
+          class="card-border absolute inset-0 border border-white/20 pointer-events-none group-hover:border-primary/50 transition-colors scale-x-0"
+        ></div>
+
+        {/* Content */}
+        <div class="relative p-6 md:p-8">
+          {/* Venue */}
+          <div class="flex items-center gap-3 mb-4">
+            <span class="lime-square"></span>
+            <span class="font-mono text-xs uppercase tracking-[0.14em] text-primary">
+              {pub.venue}
+            </span>
+          </div>
+
+          {/* Title */}
+          <h3 class="text-[clamp(18px,5vw,24px)] md:text-[clamp(20px,1.8vw,24px)] font-bold text-foreground mb-4 leading-tight">
+            {pub.title}
+          </h3>
+
+          {/* Abstract */}
+          <p class="text-muted-foreground text-sm md:text-base leading-relaxed mb-6">
+            {pub.abstract}
+          </p>
+
+          {/* Tags */}
+          <div class="flex flex-wrap gap-2 mb-6">
+            {pub.tags.map((tag) => (
+              <span
+                class="px-2 md:px-3 py-1 border border-white/20 text-muted-foreground font-mono text-xs uppercase tracking-wider"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          {/* Link */}
+          <a
+            href={pub.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group/link inline-flex items-center gap-2 text-foreground font-mono text-sm uppercase tracking-[0.14em] hover:text-primary transition-colors"
+          >
+            View DOI
+            <ExternalLink className="w-4 h-4 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
+          </a>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import ScrollTrigger from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initPublications = () => {
+    const section = document.querySelector('.publications-section');
+    if (!section) return;
+
+    const header = section.querySelector('.publications-header');
+    const cards = section.querySelectorAll('.publication-card');
+
+    // Header animation
+    gsap.fromTo(header,
+      { y: '-4vh', opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        scrollTrigger: {
+          trigger: header,
+          start: 'top 80%',
+          end: 'top 55%',
+          scrub: true
+        }
+      }
+    );
+
+    // Card animations
+    cards.forEach((card) => {
+      gsap.fromTo(card,
+        { y: '8vh', opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 80%',
+            end: 'top 55%',
+            scrub: true
+          }
+        }
+      );
+
+      // Border draw
+      const border = card.querySelector('.card-border');
+      gsap.fromTo(border,
+        { scaleX: 0 },
+        {
+          scaleX: 1,
+          transformOrigin: 'left',
+          duration: 0.6,
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 70%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+    });
+  };
+
+  initPublications();
+  document.addEventListener('astro:after-swap', initPublications);
+</script>
