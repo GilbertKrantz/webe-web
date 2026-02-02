@@ -14,8 +14,16 @@ import { Chatbot } from "../components/Chatbot";
 import { getAllPortfolioData } from "../lib/db";
 
 // Fetch all portfolio data from database
+console.log('--- SERVER SIDE RENDERING index.astro ---');
+console.log('POSTGRES_URL length:', import.meta.env.POSTGRES_URL?.length || 0);
 const { experiences, projects, skillCategories, publications } =
 	await getAllPortfolioData();
+console.log('Data fetched:', { 
+  exp: experiences.length, 
+  proj: projects.length, 
+  skills: skillCategories.length, 
+  pub: publications.length 
+});
 ---
 
 <BaseLayout>
