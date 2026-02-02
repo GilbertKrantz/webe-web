@@ -22,7 +22,7 @@ export default function About() {
         scrollTrigger: {
           trigger: section,
           start: 'top top',
-          end: '+=130%',
+          end: '+=100%',
           pin: true,
           scrub: 0.6,
         }
@@ -30,14 +30,14 @@ export default function About() {
 
       // ENTRANCE (0-30%)
       scrollTl.fromTo(statementRef.current,
-        { y: '40vh', opacity: 0 },
+        { y: '20vh', opacity: 0 },
         { y: 0, opacity: 1, ease: 'none' },
         0
       );
 
       scrollTl.fromTo(lineRef.current,
         { scaleX: 0 },
-        { scaleX: 1, ease: 'none', transformOrigin: 'left' },
+        { scaleX: 1, ease: 'none', transformOrigin: 'center' },
         0.10
       );
 
