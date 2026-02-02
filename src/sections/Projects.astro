@@ -1,5 +1,5 @@
 ---
-import { ArrowUpRight } from 'lucide-react';
+import { Icon } from 'astro-icon/components';
 import type { Project } from '../lib/types';
 
 interface Props {
@@ -69,12 +69,12 @@ const { projects } = Astro.props;
                 class="group inline-flex items-center gap-2 text-foreground font-mono text-sm uppercase tracking-[0.14em] hover:text-primary transition-colors"
               >
                 View case study
-                <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                <Icon name="lucide:arrow-up-right" class="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </a>
             ) : (
               <span class="inline-flex items-center gap-2 text-muted-foreground/40 font-mono text-sm uppercase tracking-[0.14em] cursor-default">
                 View case study
-                <ArrowUpRight className="w-4 h-4" />
+                <Icon name="lucide:arrow-up-right" class="w-4 h-4" />
               </span>
             )}
           </div>
@@ -162,6 +162,11 @@ const { projects } = Astro.props;
     });
   };
 
-  initProjects();
-  document.addEventListener('astro:after-swap', initProjects);
+  const initProjectsWithCleanup = () => {
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    initProjects();
+  };
+
+  initProjectsWithCleanup();
+  document.addEventListener('astro:after-swap', initProjectsWithCleanup);
 </script>

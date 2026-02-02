@@ -130,6 +130,11 @@ const { experiences } = Astro.props;
     });
   };
 
-  initExperience();
-  document.addEventListener('astro:after-swap', initExperience);
+  const initExperienceWithCleanup = () => {
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    initExperience();
+  };
+
+  initExperienceWithCleanup();
+  document.addEventListener('astro:after-swap', initExperienceWithCleanup);
 </script>
