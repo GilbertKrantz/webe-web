@@ -1,5 +1,5 @@
 ---
-import { ArrowDown, FileDown } from 'lucide-react';
+import { Icon } from 'astro-icon/components';
 ---
 
 <section
@@ -42,13 +42,13 @@ import { ArrowDown, FileDown } from 'lucide-react';
         class="scroll-to-projects group flex items-center gap-3 px-6 py-3 border border-primary text-primary font-mono text-sm uppercase tracking-[0.14em] hover:bg-primary hover:text-background transition-colors touch-manipulation"
       >
         View Projects
-        <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
+        <Icon name="lucide:arrow-down" class="w-4 h-4 group-hover:translate-y-1 transition-transform" />
       </a>
       <a
         href="#"
         class="flex items-center gap-2 text-muted-foreground font-mono text-sm uppercase tracking-[0.14em] hover:text-lime transition-colors touch-manipulation"
       >
-        <FileDown className="w-4 h-4" />
+        <Icon name="lucide:file-down" class="w-4 h-4" />
         Download CV
       </a>
     </div>
@@ -186,6 +186,11 @@ import { ArrowDown, FileDown } from 'lucide-react';
     });
   };
 
-  initHero();
-  document.addEventListener('astro:after-swap', initHero);
+  const initHeroWithCleanup = () => {
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    initHero();
+  };
+
+  initHeroWithCleanup();
+  document.addEventListener('astro:after-swap', initHeroWithCleanup);
 </script>

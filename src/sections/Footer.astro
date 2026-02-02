@@ -1,5 +1,5 @@
 ---
-import { ArrowUp } from 'lucide-react';
+import { Icon } from 'astro-icon/components';
 ---
 
 <footer
@@ -19,7 +19,7 @@ import { ArrowUp } from 'lucide-react';
       class="group flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors font-mono text-xs uppercase tracking-[0.14em]"
     >
       Back to top
-      <ArrowUp className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
+      <Icon name="lucide:arrow-up" class="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
     </button>
 
     {/* Right: Links */}
@@ -82,6 +82,11 @@ import { ArrowUp } from 'lucide-react';
     });
   };
 
-  initFooter();
-  document.addEventListener('astro:after-swap', initFooter);
+  const initFooterWithCleanup = () => {
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    initFooter();
+  };
+
+  initFooterWithCleanup();
+  document.addEventListener('astro:after-swap', initFooterWithCleanup);
 </script>

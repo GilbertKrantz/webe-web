@@ -1,5 +1,5 @@
 ---
-import { ExternalLink } from 'lucide-react';
+import { Icon } from 'astro-icon/components';
 import type { Publication } from '../lib/types';
 
 interface Props {
@@ -73,7 +73,7 @@ const { publications } = Astro.props;
             class="group/link inline-flex items-center gap-2 text-foreground font-mono text-sm uppercase tracking-[0.14em] hover:text-primary transition-colors"
           >
             View DOI
-            <ExternalLink className="w-4 h-4 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
+            <Icon name="lucide:external-link" class="w-4 h-4 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
           </a>
         </div>
       </div>
@@ -143,6 +143,11 @@ const { publications } = Astro.props;
     });
   };
 
-  initPublications();
-  document.addEventListener('astro:after-swap', initPublications);
+  const initPublicationsWithCleanup = () => {
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    initPublications();
+  };
+
+  initPublicationsWithCleanup();
+  document.addEventListener('astro:after-swap', initPublicationsWithCleanup);
 </script>

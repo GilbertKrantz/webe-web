@@ -1,5 +1,5 @@
 ---
-import { ArrowRight } from 'lucide-react';
+import { Icon } from 'astro-icon/components';
 ---
 
 <section
@@ -44,7 +44,7 @@ import { ArrowRight } from 'lucide-react';
       >
         <span class="lime-square mr-2"></span>
         Read more
-        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        <Icon name="lucide:arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform" />
       </a>
     </div>
   </div>
@@ -145,7 +145,12 @@ import { ArrowRight } from 'lucide-react';
     );
   };
 
+  const initAboutWithCleanup = () => {
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    initAbout();
+  };
+
   // Run on page load and view transition
-  initAbout();
-  document.addEventListener('astro:after-swap', initAbout);
+  initAboutWithCleanup();
+  document.addEventListener('astro:after-swap', initAboutWithCleanup);
 </script>
