@@ -16,7 +16,7 @@ let sqlClient: ReturnType<typeof neon> | null = null;
 
 function getSQL() {
     if (!sqlClient) {
-        const connectionString = import.meta.env.POSTGRES_URL;
+        const connectionString = process.env.POSTGRES_URL;
         if (!connectionString) {
             throw new Error('POSTGRES_URL environment variable is not set');
         }

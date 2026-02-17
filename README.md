@@ -5,10 +5,10 @@ This is the personal portfolio website for **Wilbert Chandra**, a **Data Enginee
 **Live Site**: [webe-dev.vercel.app](https://webe-dev.vercel.app)
 
 ## 🚀 Overview
-A high-performance, modern single-page portfolio built with **React 19**, **Astro**, and **GSAP**. It features advanced scroll animations, a section-based architecture, and a focus on scalability and production-ready data systems.
+A high-performance, modern single-page portfolio built with **React 19**, **Next.js**, and **GSAP**. It features advanced scroll animations, a section-based architecture, and a focus on scalability and production-ready data systems.
 
 ## 🛠️ Tech Stack
-- **Framework**: [Astro 5](https://astro.build/) + [React 19](https://react.dev/)
+- **Framework**: [Next.js](https://nextjs.org/) + [React 19](https://react.dev/)
 - **Database**: [Neon](https://neon.tech/) (PostgreSQL)
 - **Deployment**: [Vercel](https://vercel.com/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/) + [Radix UI](https://www.radix-ui.com/)

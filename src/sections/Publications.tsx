@@ -121,7 +121,7 @@ export default function Publications({ publications }: PublicationsProps) {
               </h3>
 
               {/* Abstract */}
-              <p className="text-muted-foreground text-sm md:text-base leading-relaxed mb-6">
+              <p className="text-muted-foreground text-sm md:text-base leading-relaxed mb-6 line-clamp-4">
                 {pub.abstract}
               </p>
 
@@ -130,7 +130,7 @@ export default function Publications({ publications }: PublicationsProps) {
                 {pub.tags.map((tag, tagIndex) => (
                   <span
                     key={tagIndex}
-                    className="px-2 md:px-3 py-1 border border-white/20 text-muted-foreground font-mono text-xs uppercase tracking-wider"
+                    className="px-3 py-1.5 md:px-3 md:py-1 border border-white/20 text-muted-foreground font-mono text-xs uppercase tracking-wider"
                   >
                     {tag}
                   </span>

@@ -8,6 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Footer() {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const currentYear = new Date().getFullYear();
 
   useLayoutEffect(() => {
     const section = sectionRef.current;
@@ -47,7 +48,7 @@ export default function Footer() {
       >
         {/* Left: Copyright */}
         <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground text-center md:text-left">
-          © 2026 Wilbert Chandra
+          © {currentYear} Wilbert Chandra
         </p>
 
         {/* Center: Back to Top */}
@@ -67,7 +68,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground hover:text-primary transition-colors"
           >
-            LinkedIn
+            LinkedIn <span aria-hidden="true">↗</span>
           </a>
           <a
             href="https://github.com/GilbertKrantz"
@@ -75,7 +76,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground hover:text-primary transition-colors"
           >
-            GitHub
+            GitHub <span aria-hidden="true">↗</span>
           </a>
           <a
             href="mailto:wilbertchandra.official@gmail.com"

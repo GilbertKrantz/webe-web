@@ -3,11 +3,11 @@
 This file provides essential context for AI agents working on the **webe-web** project.
 
 ## Project Overview
-**webe-web** is a modern, high-performance personal portfolio website built with React 19, Vite, and GSAP. It showcases the work and expertise of a **Data Engineer & AI Engineer**, featuring a polished, section-based single-page layout with advanced scroll animations and responsive design.
+**webe-web** is a modern, high-performance personal portfolio website built with React 19, Next.js, and GSAP. It showcases the work and expertise of a **Data Engineer & AI Engineer**, featuring a polished, section-based single-page layout with advanced scroll animations and responsive design.
 
 ## Tech Stack
 - **Framework**: React 19 (Strict Mode enabled)
-- **Build Tool**: Vite 7
+- **Framework Runtime**: Next.js App Router
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS + Radix UI Primitives
 - **Animations**: GSAP (GreenSock Animation Platform) + ScrollTrigger
@@ -23,7 +23,7 @@ This file provides essential context for AI agents working on the **webe-web** p
 - `/src/lib/`: Utility functions and shared library configurations.
 - `/src/hooks/`: Custom React hooks for shared logic.
 - `/src/App.tsx`: The main application container. It includes global GSAP ScrollTrigger configuration for scroll-snapping and grain overlays.
-- `/src/main.tsx`: Application entry point.
+- `/src/app/layout.tsx` and `/src/app/page.tsx`: Application entry points.
 
 ## Key Patterns & Architecture
 - **Section-based Layout**: Most content is organized into self-contained sections within `src/sections`.

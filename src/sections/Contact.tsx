@@ -13,6 +13,12 @@ export default function Contact() {
   const decorRef = useRef<HTMLDivElement>(null);
 
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleFieldChange = (field: 'name' | 'email' | 'message', value: string) => {
+    setIsSubmitted(false);
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
 
   useLayoutEffect(() => {
     const section = sectionRef.current;
@@ -80,7 +86,7 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert('Message sent! I will get back to you soon.');
+    setIsSubmitted(true);
     setFormData({ name: '', email: '', message: '' });
   };
 
@@ -88,6 +94,7 @@ export default function Contact() {
     <section
       ref={sectionRef}
       id="contact"
+      aria-label="Contact section"
       className="section-pinned bg-background z-[70] flex items-center justify-center"
     >
       {/* Decorative Element */}
@@ -142,6 +149,13 @@ export default function Contact() {
             </span>
           </a>
         </div>
+        <a
+          href="mailto:wilbertchandra.official@gmail.com?subject=Project%20Inquiry"
+          className="mt-6 inline-flex min-h-[44px] items-center gap-3 border border-primary px-5 py-3 font-mono text-xs uppercase tracking-[0.14em] text-primary transition-colors hover:bg-primary hover:text-background md:hidden"
+        >
+          <Send className="w-4 h-4" />
+          Send a message
+        </a>
       </div>
 
       {/* Right Form Card - hidden on mobile */}
@@ -153,7 +167,7 @@ export default function Contact() {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Name */}
             <div>
-              <label className="block font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground mb-3">
+              <label htmlFor="name" className="block font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground mb-3">
                 Name
               </label>
               <input
@@ -162,7 +176,7 @@ export default function Contact() {
                 id="name"
                 autoComplete="name"
                 value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                onChange={(e) => handleFieldChange('name', e.target.value)}
                 className="w-full bg-transparent border-b border-white/20 py-3 text-foreground focus:border-primary focus:outline-none transition-colors"
                 placeholder="Your name"
                 required
@@ -171,7 +185,7 @@ export default function Contact() {
 
             {/* Email */}
             <div>
-              <label className="block font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground mb-3">
+              <label htmlFor="email" className="block font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground mb-3">
                 Email
               </label>
               <input
@@ -182,7 +196,7 @@ export default function Contact() {
                 inputMode="email"
                 spellCheck={false}
                 value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                onChange={(e) => handleFieldChange('email', e.target.value)}
                 className="w-full bg-transparent border-b border-white/20 py-3 text-foreground focus:border-primary focus:outline-none transition-colors"
                 placeholder="your@email.com"
                 required
@@ -191,14 +205,14 @@ export default function Contact() {
 
             {/* Message */}
             <div>
-              <label className="block font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground mb-3">
+              <label htmlFor="message" className="block font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground mb-3">
                 Message
               </label>
               <textarea
                 name="message"
                 id="message"
                 value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                onChange={(e) => handleFieldChange('message', e.target.value)}
                 className="w-full bg-transparent border-b border-white/20 py-3 text-foreground focus:border-primary focus:outline-none transition-colors resize-none"
                 rows={4}
                 placeholder="Tell me about your project…"
@@ -207,16 +221,21 @@ export default function Contact() {
             </div>
 
             {/* Submit */}
-            <button
-              type="submit"
-              className="group flex items-center gap-3 px-8 py-4 bg-primary text-background font-mono text-sm uppercase tracking-[0.14em] font-medium hover:bg-foreground hover:text-background transition-colors mt-8"
-            >
-              Send message
-              <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
-          </form>
+              <button
+                type="submit"
+                className="group mt-8 flex min-h-[44px] items-center gap-3 bg-primary px-8 py-4 text-background font-mono text-sm font-medium uppercase tracking-[0.14em] transition-colors hover:bg-foreground hover:text-background"
+              >
+                Send message
+                <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+              {isSubmitted && (
+                <p className="font-mono text-xs uppercase tracking-[0.14em] text-primary">
+                  Message sent. I&apos;ll reply soon.
+                </p>
+              )}
+            </form>
+          </div>
         </div>
-      </div>
     </section>
   );
 }

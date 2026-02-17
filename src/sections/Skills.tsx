@@ -95,7 +95,7 @@ export default function Skills({ skillCategories }: SkillsProps) {
       </div>
 
       {/* Skills Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 md:gap-x-8 gap-y-8 md:gap-y-12">
+      <div className="grid grid-cols-1 min-[400px]:grid-cols-2 md:grid-cols-4 gap-x-4 md:gap-x-8 gap-y-8 md:gap-y-12">
         {skillCategories.map((category, catIndex) => (
           <div
             key={catIndex}
@@ -103,7 +103,7 @@ export default function Skills({ skillCategories }: SkillsProps) {
             className="opacity-0"
           >
             {/* Category Title */}
-            <h3 className="text-sm md:text-base font-bold text-foreground mb-4 md:mb-6 flex items-center gap-2 md:gap-3">
+            <h3 className="text-sm md:text-base font-semibold text-foreground mb-4 md:mb-6 flex items-center gap-2 md:gap-3">
               <span className="lime-square"></span>
               {category.title}
             </h3>
@@ -113,10 +113,10 @@ export default function Skills({ skillCategories }: SkillsProps) {
               {category.skills.map((skill, skillIndex) => (
                 <div
                   key={skillIndex}
-                  className="skill-row flex items-center gap-2 md:gap-4 opacity-0"
+                  className="skill-row group flex items-center gap-2 md:gap-4 opacity-0"
                 >
                   <div className="w-4 md:w-8 h-px line-secondary"></div>
-                  <span className="text-muted-foreground font-mono text-xs md:text-sm uppercase tracking-wider">
+                  <span className="text-muted-foreground font-mono text-xs md:text-sm uppercase tracking-wider transition-colors group-hover:text-foreground">
                     {skill}
                   </span>
                 </div>

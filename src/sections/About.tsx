@@ -107,9 +107,9 @@ export default function About() {
         ref={decorRef}
         className="absolute left-6 md:left-[7vw] top-[15vh] opacity-0"
       >
-        <div className="w-16 md:w-24 h-16 md:h-24 border border-lime/30 relative">
-          <div className="absolute -top-2 -left-2 w-4 h-4 border-t border-l border-lime"></div>
-          <div className="absolute -bottom-2 -right-2 w-4 h-4 border-b border-r border-lime"></div>
+        <div className="w-16 md:w-24 h-16 md:h-24 border border-primary/30 relative">
+          <div className="absolute -top-2 -left-2 w-4 h-4 border-t border-l border-primary"></div>
+          <div className="absolute -bottom-2 -right-2 w-4 h-4 border-b border-r border-primary"></div>
         </div>
       </div>
 
@@ -123,7 +123,7 @@ export default function About() {
         </h2>
         <div
           ref={lineRef}
-          className="w-[40vw] md:w-[20vw] h-px line-primary mx-auto mb-6 md:mb-8 origin-left"
+          className="w-[40vw] md:w-[20vw] h-px line-primary mx-auto mb-6 md:mb-8 origin-center"
           style={{ transform: 'scaleX(0)' }}
         ></div>
         <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-6 md:mb-8 max-w-[90vw] md:max-w-[50vw] mx-auto text-center">
@@ -133,7 +133,7 @@ export default function About() {
         <div className="flex justify-center">
           <a
             href="#experience"
-            className="group inline-flex items-center gap-3 text-lime font-mono text-sm uppercase tracking-[0.14em] hover:text-white transition-colors"
+            className="group inline-flex items-center gap-3 border-b border-transparent pb-0.5 text-lime font-mono text-sm uppercase tracking-[0.14em] transition-colors hover:border-foreground/30 hover:text-foreground"
           >
             <span className="lime-square mr-2"></span>
             Read more

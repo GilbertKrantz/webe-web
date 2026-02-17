@@ -87,21 +87,26 @@
   .font-mono {
     font-family: 'IBM Plex Mono', monospace;
   }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 2px;
+  }
 }
 
 @layer components {
   .line-primary {
-    background-color: rgba(244, 244, 245, 0.55);
+    background-color: hsl(var(--foreground) / 0.55);
   }
 
   .line-secondary {
-    background-color: rgba(244, 244, 245, 0.22);
+    background-color: hsl(var(--foreground) / 0.22);
   }
 
   .lime-square {
     width: 10px;
     height: 10px;
-    background-color: #808080;
+    background-color: hsl(var(--primary));
     display: inline-block;
   }
 
@@ -132,15 +137,15 @@
 
 @layer utilities {
   .text-lime {
-    color: #808080;
+    color: hsl(var(--primary));
   }
 
   .bg-lime {
-    background-color: #808080;
+    background-color: hsl(var(--primary));
   }
 
   .border-lime {
-    border-color: #808080;
+    border-color: hsl(var(--primary));
   }
 
   .clip-inset-0 {
@@ -154,18 +159,18 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #0B0B0D;
+  background: hsl(var(--background));
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #333;
+  background: hsl(var(--muted-foreground) / 0.55);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #808080;
+  background: hsl(var(--primary));
 }
 
 ::selection {
-  background-color: #4D4D4D;
-  color: #BFBFBF;
+  background-color: hsl(var(--primary) / 0.35);
+  color: hsl(var(--foreground));
 }
