@@ -113,7 +113,7 @@ export default function Projects({ projects }: ProjectsProps) {
           <div
             key={project.id}
             ref={el => { cardRefs.current[index] = el; }}
-            className="relative border-b border-white/10 py-8 md:py-12"
+            className="relative border-b border-white/10 py-8 md:py-12 transition-colors hover:bg-white/[0.02]"
           >
             {/* Horizontal line */}
             <div
@@ -121,10 +121,10 @@ export default function Projects({ projects }: ProjectsProps) {
               style={{ transform: 'scaleX(0)' }}
             ></div>
 
-            <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-8">
+            <div className="flex flex-col md:flex-row md:items-start gap-6 md:gap-8">
               {/* Number */}
               <div className="card-number flex-shrink-0">
-                <span className="text-[clamp(48px,12vw,80px)] md:text-[clamp(64px,8vw,100px)] font-bold text-primary/10 leading-none">
+                <span aria-hidden="true" className="text-[clamp(48px,12vw,80px)] md:text-[clamp(64px,8vw,100px)] font-bold text-primary/10 leading-none">
                   0{project.id}
                 </span>
               </div>
@@ -159,7 +159,10 @@ export default function Projects({ projects }: ProjectsProps) {
                     <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </a>
                 ) : (
-                  <span className="inline-flex items-center gap-2 text-muted-foreground/40 font-mono text-sm uppercase tracking-[0.14em] cursor-default">
+                  <span
+                    title="Case study coming soon"
+                    className="inline-flex items-center gap-2 text-muted-foreground/30 font-mono text-sm uppercase tracking-[0.14em] cursor-not-allowed"
+                  >
                     View case study
                     <ArrowUpRight className="w-4 h-4" />
                   </span>

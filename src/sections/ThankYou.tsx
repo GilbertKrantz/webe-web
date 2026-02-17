@@ -85,7 +85,8 @@ export default function ThankYou() {
   return (
     <section
       ref={sectionRef}
-      className="section-pinned bg-[#0B0B0D] z-[80] flex items-center justify-center"
+      aria-label="Closing section"
+      className="section-pinned bg-background z-[80] flex items-center justify-center"
     >
       {/* Horizontal Line */}
       <div
@@ -99,7 +100,7 @@ export default function ThankYou() {
         {/* Headline */}
         <h2
           ref={headlineRef}
-          className="text-[clamp(40px,14vw,120px)] md:text-[clamp(60px,10vw,140px)] font-bold text-[#F4F4F5] leading-[0.85] mb-4 md:mb-6 opacity-0"
+          className="text-[clamp(40px,14vw,120px)] md:text-[clamp(60px,10vw,140px)] font-bold text-foreground leading-[0.85] mb-4 md:mb-6 opacity-0"
         >
           Thanks.
         </h2>
@@ -107,7 +108,7 @@ export default function ThankYou() {
         {/* Subline */}
         <p
           ref={sublineRef}
-          className="text-[#A7A7AA] text-base md:text-xl mb-8 md:mb-12 opacity-0"
+          className="text-muted-foreground text-base md:text-xl mb-8 md:mb-12 opacity-0"
         >
           Open to collaborations, research, and product work.
         </p>
@@ -125,9 +126,10 @@ export default function ThankYou() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex flex-col items-center gap-2 md:gap-3 text-[#A7A7AA] hover:text-lime transition-colors"
+                aria-label={`Open ${social.name}`}
+                className="group flex flex-col items-center gap-2 md:gap-3 text-muted-foreground hover:text-lime transition-colors"
               >
-                <div className="w-10 md:w-12 h-10 md:h-12 border border-white/20 flex items-center justify-center group-hover:border-lime transition-colors">
+                <div className="w-11 md:w-12 h-11 md:h-12 border border-white/20 flex items-center justify-center group-hover:border-lime transition-colors">
                   <Icon className="w-4 md:w-5 h-4 md:h-5" />
                 </div>
                 <span className="font-mono text-xs uppercase tracking-[0.14em]">

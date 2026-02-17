@@ -11,7 +11,7 @@ export default function Hero() {
   const line2Ref = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLDivElement>(null);
   const subheadRef = useRef<HTMLDivElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
+  const ctaRef = useRef<HTMLElement>(null);
   const locationRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
@@ -171,28 +171,34 @@ export default function Hero() {
         </div>
 
         {/* CTA Row */}
-        <div ref={ctaRef} className="flex flex-col sm:flex-row items-start sm:items-center gap-4 md:gap-6 opacity-0">
+        <nav
+          ref={ctaRef}
+          aria-label="Primary actions"
+          className="flex flex-col sm:flex-row items-start sm:items-center gap-4 md:gap-6 opacity-0"
+        >
           <a
             href="#projects"
             onClick={handleScrollToProjects}
-            className="group flex items-center gap-3 px-6 py-3 border border-primary text-primary font-mono text-sm uppercase tracking-[0.14em] hover:bg-primary hover:text-background transition-colors touch-manipulation"
+            className="group flex min-h-[44px] items-center gap-3 border border-primary px-6 py-3.5 text-primary font-mono text-sm uppercase tracking-[0.14em] hover:bg-primary hover:text-background transition-colors touch-manipulation"
           >
             View Projects
             <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
           </a>
           <a
-            href="#"
-            className="flex items-center gap-2 text-muted-foreground font-mono text-sm uppercase tracking-[0.14em] hover:text-lime transition-colors touch-manipulation"
+            href="/Wilbert-CV.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex min-h-[44px] items-center gap-2 text-muted-foreground font-mono text-sm uppercase tracking-[0.14em] hover:text-lime transition-colors touch-manipulation"
           >
             <FileDown className="w-4 h-4" />
             Download CV
           </a>
-        </div>
+        </nav>
 
         {/* Location */}
         <div
           ref={locationRef}
-          className="absolute bottom-[-20vh] md:bottom-[-25vh] left-6 md:left-auto opacity-0"
+          className="absolute bottom-4 md:bottom-[-25vh] left-6 md:left-auto opacity-0"
         >
           <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground">
             Jakarta, Indonesia
@@ -201,8 +207,8 @@ export default function Hero() {
       </div>
 
       {/* Corner Decorations */}
-      <div className="absolute top-8 right-8 w-4 h-4 border-t border-r border-white/20"></div>
-      <div className="absolute bottom-8 left-8 w-4 h-4 border-b border-l border-white/20"></div>
+      <div className="absolute top-8 right-8 w-4 h-4 border-t border-r border-foreground/30"></div>
+      <div className="absolute bottom-8 left-8 w-4 h-4 border-b border-l border-foreground/30"></div>
     </section>
   );
 }

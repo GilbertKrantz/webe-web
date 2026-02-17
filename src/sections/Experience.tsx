@@ -101,7 +101,7 @@ export default function Experience({ experiences }: ExperienceProps) {
           >
             <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-8">
               {/* Date - left side on desktop */}
-              <div className="md:w-[20%] flex-shrink-0">
+              <div className="md:w-[20%] flex-shrink-0 mb-1 md:mb-0">
                 <span className="font-mono text-xs md:text-sm uppercase tracking-[0.14em] text-primary">
                   {exp.dateRange}
                 </span>
@@ -119,7 +119,7 @@ export default function Experience({ experiences }: ExperienceProps) {
                 </div>
 
                 {/* Bullets */}
-                <ul className="space-y-2 md:space-y-3">
+                <ul className="space-y-3 md:space-y-4">
                   {exp.bullets.map((bullet, bulletIndex) => (
                     <li key={bulletIndex} className="flex items-start gap-3">
                       <span

@@ -23,6 +23,24 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsOpen(false);
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen]);
+
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setIsOpen(false);
@@ -58,7 +76,11 @@ export default function Navigation() {
 
           {/* Menu Button */}
           <button
+            type="button"
             onClick={() => setIsOpen(true)}
+            aria-expanded={isOpen}
+            aria-controls="site-menu"
+            aria-label="Open menu"
             className="font-mono text-xs md:text-sm uppercase tracking-[0.14em] text-foreground hover:text-primary transition-colors flex items-center gap-2"
           >
             <span className="hidden sm:inline">Menu</span>
@@ -69,12 +91,18 @@ export default function Navigation() {
 
       {/* Full-screen Menu Overlay */}
       <div
+        id="site-menu"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Site navigation menu"
         className={`fixed inset-0 z-[200] bg-background transition-transform duration-500 ${isOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
       >
         {/* Close Button */}
         <button
+          type="button"
           onClick={() => setIsOpen(false)}
+          aria-label="Close menu"
           className="absolute top-4 md:top-6 right-4 md:right-[7vw] font-mono text-xs md:text-sm uppercase tracking-[0.14em] text-foreground hover:text-primary transition-colors flex items-center gap-2"
         >
           <span className="hidden sm:inline">Close</span>
@@ -83,7 +111,7 @@ export default function Navigation() {
 
         {/* Menu Content */}
         <div className="h-full flex flex-col items-center justify-center px-6">
-          <nav className="space-y-6 md:space-y-8">
+          <nav className="space-y-6 md:space-y-8" aria-label="Site sections">
             {menuItems.map((item, index) => (
               <a
                 key={item.label}
