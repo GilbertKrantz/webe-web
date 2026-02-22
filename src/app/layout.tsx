@@ -38,7 +38,7 @@ export default function RootLayout({
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
       </head>
-      <body className={`${hack.variable} font-hack`}>
+      <body className={hack.variable}>
         <a
           href="#projects"
           className="sr-only font-mono text-sm uppercase focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[999] focus:bg-primary focus:px-4 focus:py-2 focus:text-background"

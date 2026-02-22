@@ -91,7 +91,7 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "caret-blink": "caret-blink 1.25s ease-out infinite",
-        "terminal-cursor": "terminal-cursor 1s steps(1) infinite",
+        "terminal-cursor": "terminal-cursor 1s infinite",
       },
     },
   },

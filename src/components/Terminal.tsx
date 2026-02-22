@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { TerminalUI } from './TerminalUI';
 import { useTypingEffect } from '@/hooks/useTypingEffect';
 
@@ -25,9 +25,9 @@ const COMMAND_OUTPUTS: Record<string, string> = {
     '{\n  "data_orchestration": ["Airflow"],\n  "query_engines": ["Athena"],\n  "llm_serving": ["vLLM"],\n  "ai_architecture": ["RAG"],\n  "vector_databases": ["Milvus", "pgvector"]\n}',
 };
 
-const TypedOutput: React.FC<{ value: string; resetKey: string }> = ({ value, resetKey }) => {
-  const typedValue = useTypingEffect(value, 10, resetKey);
-  return <pre className="whitespace-pre-wrap text-lime/80">{typedValue}</pre>;
+const TypedOutput: React.FC<{ value: string }> = ({ value }) => {
+  const typedValue = useTypingEffect(value, 10);
+  return <pre aria-live="polite" className="whitespace-pre-wrap text-lime/80">{typedValue}</pre>;
 };
 
 export const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
@@ -35,18 +35,9 @@ export const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
   const [history, setHistory] = useState<TerminalEntry[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const focusInput = useMemo(
-    () => () => {
-      inputRef.current?.focus();
-    },
-    [],
-  );
-
   useEffect(() => {
-    focusInput();
-    window.addEventListener('click', focusInput);
-    return () => window.removeEventListener('click', focusInput);
-  }, [focusInput]);
+    inputRef.current?.focus();
+  }, []);
 
   const handleCommand = (input: string) => {
     const command = input.trim();
@@ -74,15 +65,17 @@ export const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
 
   return (
     <TerminalUI onClose={onClose} className="font-hack">
-      <div className="space-y-4 pb-20 md:pb-2">
+      <div className="space-y-4 pb-20 md:pb-2" onClick={() => inputRef.current?.focus()}>
         {history.length === 0 && (
-          <p className="text-lime/70">Type `whoami`, `ls ./projects/`, `./experience.sh`, `cat stack.json`, or `clear`.</p>
+          <p className="text-lime/70">
+            Type <code>whoami</code>, <code>ls ./projects/</code>, <code>./experience.sh</code>, <code>cat stack.json</code>, or <code>clear</code>.
+          </p>
         )}
 
         {history.map((entry) => (
           <div key={entry.id} className="space-y-1">
             <p className="text-lime">{PROMPT_PREFIX} {entry.command}</p>
-            <TypedOutput value={entry.output} resetKey={entry.id} />
+            <TypedOutput value={entry.output} />
           </div>
         ))}
       </div>
@@ -95,22 +88,18 @@ export const Terminal: React.FC<TerminalProps> = ({ onClose }) => {
         className="mt-4 flex items-center gap-2 border-t border-white/10 pt-3"
       >
         <span className="text-lime text-xs md:text-sm">{PROMPT_PREFIX}</span>
-        <div className="relative flex-1">
+        <div className="flex flex-1 items-center">
           <input
             ref={inputRef}
             value={inputValue}
             onChange={(event) => setInputValue(event.target.value)}
             aria-label="Terminal command input"
-            className="w-full bg-transparent border-none outline-none ring-0 focus:outline-none focus:ring-0 text-transparent caret-transparent"
+            className="w-full bg-transparent border-none outline-none ring-0 focus:outline-none focus:ring-0 text-lime caret-transparent"
             autoFocus
           />
-          <span className="pointer-events-none absolute inset-0 whitespace-pre text-lime">
-            {inputValue}
-            <span className="animate-terminal-cursor">█</span>
-          </span>
+          <span className="pointer-events-none text-lime animate-terminal-cursor">█</span>
         </div>
       </form>
-
       <div className="fixed inset-x-0 bottom-0 z-[10001] flex gap-2 border-t border-white/10 bg-[#0D0D0D]/95 p-2 md:hidden">
         <button
           type="button"

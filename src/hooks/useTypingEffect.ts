@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export function useTypingEffect(value: string, delay = 10, resetKey?: string) {
+export function useTypingEffect(value: string, delay = 10) {
   const [typedValue, setTypedValue] = useState('');
 
   useEffect(() => {
@@ -15,8 +15,10 @@ export function useTypingEffect(value: string, delay = 10, resetKey?: string) {
       }
     }, delay);
 
-    return () => window.clearInterval(timer);
-  }, [value, delay, resetKey]);
+    return () => {
+      window.clearInterval(timer);
+    };
+  }, [value, delay]);
 
   return typedValue;
 }
