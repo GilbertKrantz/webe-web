@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import localFont from 'next/font/local';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
@@ -9,6 +10,16 @@ const THEME_SCRIPT = `
     document.documentElement.classList.toggle("light", theme === "light");
   })();
 `;
+
+const hack = localFont({
+  src: [
+    { path: '../../public/fonts/HackNerdFont-Regular.woff2', weight: '400', style: 'normal' },
+    { path: '../../public/fonts/HackNerdFont-Bold.woff2', weight: '700', style: 'normal' },
+    { path: '../../public/fonts/HackNerdFont-Italic.woff2', weight: '400', style: 'italic' },
+  ],
+  variable: '--font-hack',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'Wilbert Chandra | Data Engineer & AI Engineer',
@@ -27,7 +38,7 @@ export default function RootLayout({
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
       </head>
-      <body>
+      <body className={`${hack.variable} font-hack`}>
         <a
           href="#projects"
           className="sr-only font-mono text-sm uppercase focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[999] focus:bg-primary focus:px-4 focus:py-2 focus:text-background"
