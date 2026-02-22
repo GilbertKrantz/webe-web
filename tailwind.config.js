@@ -5,7 +5,7 @@ const config = {
   darkMode: ["class"],
   content: [
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/{Navigation,ThemeToggle,TerminalUI,Chatbot,PortfolioPage}.tsx",
+    "./src/components/{Navigation,ThemeToggle,TerminalUI,Terminal,Chatbot,PortfolioPage}.tsx",
     "./src/sections/**/*.{js,ts,jsx,tsx}",
     "./src/lib/**/*.{js,ts,jsx,tsx}",
   ],
@@ -66,6 +66,9 @@ const config = {
       boxShadow: {
         xs: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
       },
+      fontFamily: {
+        hack: ["var(--font-hack)", "monospace"],
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -79,11 +82,16 @@ const config = {
           "0%,70%,100%": { opacity: "1" },
           "20%,50%": { opacity: "0" },
         },
+        "terminal-cursor": {
+          "0%,50%": { opacity: "1" },
+          "51%,100%": { opacity: "0" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "caret-blink": "caret-blink 1.25s ease-out infinite",
+        "terminal-cursor": "terminal-cursor 1s infinite",
       },
     },
   },
